@@ -167,7 +167,7 @@ export default function ResourcesPage() {
           const favicon = getFaviconUrl(r.href, r.external);
           const inner = (
             <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
                 {favicon && (
                   <Image
                     src={favicon}
