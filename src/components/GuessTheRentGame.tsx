@@ -359,8 +359,13 @@ export function GuessTheRentGame() {
 
         <div className="gtr-details">
           <div className="gtr-detail-row">
-            <h2 className="gtr-neighborhood">{listing.area_name}</h2>
-            <div className="gtr-meta">
+            <div>
+              <h2 className="gtr-neighborhood">{listing.area_name}</h2>
+              {listing.street && (
+                <div className="gtr-address">{listing.street}{listing.unit ? `, ${listing.unit}` : ''}</div>
+              )}
+            </div>
+            <div className="gtr-meta" style={{ fontSize: '16px' }}>
               <span>{listing.bedroom_count === 0 ? 'Studio' : `${listing.bedroom_count}bd`}</span>
               <span className="gtr-meta-dot">·</span>
               <span>{listing.full_bathroom_count}ba</span>
@@ -430,7 +435,7 @@ export function GuessTheRentGame() {
                   onClick={() => submitGuess()}
                   disabled={!guess || parseInt(guess.replace(/[^0-9]/g, '')) < 100}
                 >
-                  Lock it in
+                  Guess
                 </button>
               )}
             </div>

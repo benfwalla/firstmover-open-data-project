@@ -1334,6 +1334,7 @@ a:hover {
 .gtr-details { padding: 16px 20px; }
 .gtr-detail-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
 .gtr-neighborhood { font-family: var(--font-heading); font-size: 24px; font-weight: 700; letter-spacing: -0.03em; }
+.gtr-address { font-size: 14px; color: #888; margin-top: 2px; }
 .gtr-meta { font-size: 14px; color: var(--text); white-space: nowrap; }
 .gtr-meta-dot { margin: 0 4px; color: #ccc; }
 
@@ -1477,7 +1478,7 @@ a:hover {
 .gtr-intro-footer a { color: var(--blue); text-decoration: none; }
 
 /* Listed ago badge */
-.gtr-listed-ago { position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.7); color: #4ade80; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; backdrop-filter: blur(4px); z-index: 2; }
+.gtr-listed-ago { position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.7); color: white; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; backdrop-filter: blur(4px); z-index: 2; }
 
 /* In-app numpad for mobile */
 .gtr-numpad { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 8px; }
