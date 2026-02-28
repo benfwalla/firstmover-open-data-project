@@ -94,7 +94,7 @@ export default function RentCheckTool() {
               <h3 className="rc-result-title" style={{ color: comparison.isAbove ? '#d32f2f' : comparison.isBelow ? 'var(--green)' : 'var(--blue)' }}>
                 {comparison.isClose ? "You're paying about market rate" :
                  comparison.isAbove ? `You're paying ${formatPrice(Math.abs(comparison.difference))} above median` :
-                 `You're getting a deal — ${formatPrice(Math.abs(comparison.difference))} below median`}
+                 `You're getting a deal: ${formatPrice(Math.abs(comparison.difference))} below median`}
               </h3>
               <div className="rc-result-subtitle">{bedLabel} median in {neighborhood}: {formatPrice(comparison.medianRent)}</div>
               {!comparison.isClose && (
@@ -121,7 +121,7 @@ export default function RentCheckTool() {
 
             <div className="rc-advice">
               {comparison.isAbove && (<><strong>You're overpaying.</strong> The median {bedLabel} in {neighborhood} is {formatPrice(comparison.medianRent)}, but you're paying {formatPrice(currentRent)}. Consider negotiating with your landlord or exploring similar apartments in the area.</>)}
-              {comparison.isBelow && (<><strong>You've got a good deal!</strong> You're paying {formatPrice(Math.abs(comparison.difference))} below the median {bedLabel} in {neighborhood}. Hold onto this apartment — deals like this are rare in NYC.</>)}
+              {comparison.isBelow && (<><strong>You've got a good deal!</strong> You're paying {formatPrice(Math.abs(comparison.difference))} below the median {bedLabel} in {neighborhood}. </>)}
               {comparison.isClose && (<><strong>You're paying market rate.</strong> Your rent is within $200 of the median {bedLabel} in {neighborhood}. That's about as fair as it gets in NYC's rental market.</>)}
             </div>
           </div>
@@ -136,8 +136,8 @@ export default function RentCheckTool() {
 
         <div className="cta-section">
           <p className="cta-text">Looking for a better deal?</p>
-          <a href="https://apps.apple.com/us/app/firstmover/id6740444528" target="_blank" rel="noopener noreferrer" className="cta-button-primary">Get FirstMover alerts →</a>
-          <Link href="/find-your-neighborhood" className="cta-button-secondary">Find Your Neighborhood →</Link>
+          <a href="https://apps.apple.com/us/app/firstmover/id6740444528" target="_blank" rel="noopener noreferrer" className="cta-button-primary">Get FirstMover alerts</a>
+          <Link href="/find-your-neighborhood" className="cta-button-secondary">Find Your Neighborhood</Link>
         </div>
       </div>
     </>

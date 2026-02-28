@@ -151,7 +151,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Get alerts → Download the app
+            Download the app
           </a>
         </div>
       </section>

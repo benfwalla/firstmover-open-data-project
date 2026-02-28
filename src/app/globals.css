@@ -242,14 +242,13 @@ a:hover {
   font-weight: 600;
   font-size: 16px;
   padding: 14px 32px;
-  border-radius: 100px;
+  border-radius: 8px;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s ease;
 }
 
 .cta-button:hover {
   background: #003acc;
-  transform: translateY(-1px);
   text-decoration: none;
 }
 
@@ -485,7 +484,7 @@ a:hover {
 /* Quiz Styles */
 .quiz-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--bg) 0%, white 100%);
+  background: var(--bg);
 }
 
 .quiz-container {
@@ -1038,7 +1037,7 @@ a:hover {
 .publication-hero {
   text-align: center;
   padding: 120px 0 80px;
-  background: linear-gradient(135deg, var(--bg) 0%, rgba(255, 255, 255, 0.8) 100%);
+  background: var(--bg);
 }
 
 .publication-logo {
@@ -1113,14 +1112,7 @@ a:hover {
 }
 
 .latest-report-card:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 166, 126, 0.02) 0%, transparent 50%);
-  pointer-events: none;
+  display: none;
 }
 
 .latest-report-card:hover {
@@ -1804,7 +1796,7 @@ a:hover {
 .gtr-input-display { flex: 1; font-family: var(--font-heading); font-size: 28px; font-weight: 700; padding: 14px 0; color: var(--text); min-width: 0; }
 
 /* CTA card on results */
-.gtr-cta-card { margin: 0 24px 24px; padding: 28px 24px; background: linear-gradient(135deg, #0a0a0a, #1a1a2e); border-radius: 16px; text-align: center; color: white; }
+.gtr-cta-card { margin: 0 24px 24px; padding: 28px 24px; background: #0a0a0a; border-radius: 16px; text-align: center; color: white; }
 .gtr-cta-icon { font-size: 32px; margin-bottom: 12px; }
 .gtr-cta-title { font-family: var(--font-heading); font-size: 20px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
 .gtr-cta-desc { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.5; margin-bottom: 20px; }

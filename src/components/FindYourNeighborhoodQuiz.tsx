@@ -427,7 +427,7 @@ export function FindYourNeighborhoodQuiz() {
                 <div className="quiz-bottom-cta">
                   <p className="quiz-bottom-cta-text">Want instant alerts when new listings hit these neighborhoods?</p>
                   <a href="https://apps.apple.com/us/app/firstmover/id6740444528" target="_blank" rel="noopener noreferrer" className="quiz-alert-btn">
-                    Get FirstMover — Free on iOS
+                    Get FirstMover
                   </a>
                 </div>
               </div>

@@ -71,7 +71,7 @@ export default function AffordabilityTool() {
         <div className="section-header" style={{ textAlign: 'center', marginBottom: '48px' }}>
           <h1 className="section-title" style={{ fontSize: '40px' }}>NYC Rent by Salary</h1>
           <p className="section-subtitle">
-            See what neighborhoods you can actually afford based on your salary and NYC's brutal tax situation.
+            See what neighborhoods you can actually afford based on your salary and NYC taxes.
           </p>
         </div>
 
@@ -187,13 +187,13 @@ export default function AffordabilityTool() {
             rel="noopener noreferrer"
             className="cta-button-primary"
           >
-            Download FirstMover →
+            Download FirstMover
           </a>
           <Link
             href="/find-your-neighborhood"
             className="cta-button-secondary"
           >
-            Find Your Neighborhood →
+            Find Your Neighborhood
           </Link>
         </div>
       </div>

@@ -27,7 +27,7 @@ interface Result {
 function getGrade(avgPctOff: number): { emoji: string; label: string; desc: string } {
   if (avgPctOff <= 5) return { emoji: '🏆', label: 'Rent Whisperer', desc: 'You basically work in real estate' };
   if (avgPctOff <= 10) return { emoji: '🔥', label: 'Street Smart', desc: 'You know your NYC market' };
-  if (avgPctOff <= 20) return { emoji: '👀', label: 'Getting There', desc: 'Not bad — you\'ve got decent instincts' };
+  if (avgPctOff <= 20) return { emoji: '👀', label: 'Getting There', desc: 'Not bad, decent instincts' };
   if (avgPctOff <= 35) return { emoji: '😅', label: 'Tourist Pricing', desc: 'You might need a broker' };
   return { emoji: '💀', label: 'Delusional', desc: 'You need FirstMover in your life' };
 }
@@ -208,7 +208,7 @@ export function GuessTheRentGame() {
             Let&apos;s Play
           </button>
           <p className="gtr-intro-footer">
-            Powered by <a href="https://apps.apple.com/us/app/firstmover/id6740444528" target="_blank" rel="noopener noreferrer">FirstMover</a> — live NYC rental data
+            Powered by <a href="https://apps.apple.com/us/app/firstmover/id6740444528" target="_blank" rel="noopener noreferrer">FirstMover</a>
           </p>
         </div>
       </div>
@@ -278,7 +278,7 @@ export function GuessTheRentGame() {
             <div className="gtr-cta-icon">⚡</div>
             <h3 className="gtr-cta-title">Stop guessing. Start moving.</h3>
             <p className="gtr-cta-desc">
-              FirstMover sends you instant push notifications when new NYC rentals hit the market — before anyone else sees them.
+              FirstMover sends you push notifications when new NYC rentals hit the market.
             </p>
             <a
               href="https://apps.apple.com/us/app/firstmover/id6740444528"
@@ -286,7 +286,7 @@ export function GuessTheRentGame() {
               rel="noopener noreferrer"
               className="gtr-btn-cta"
             >
-              Get FirstMover — Free on iOS
+              Get FirstMover
             </a>
           </div>
         </div>
@@ -454,7 +454,7 @@ export function GuessTheRentGame() {
                 {' — '}{results[results.length - 1].pctOff}% off
               </div>
               <button className="gtr-btn-primary gtr-btn-full" onClick={next}>
-                {current + 1 >= listings.length ? 'See Results' : 'Next Listing →'}
+                {current + 1 >= listings.length ? 'See Results' : 'Next Listing'}
               </button>
             </div>
           )}

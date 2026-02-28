@@ -9,10 +9,10 @@ export default function HomePage() {
           <img src="/logo.svg" alt="FirstMover" className="publication-logo" />
           <h1 className="publication-title">FirstMover Open Data Project</h1>
           <p className="publication-tagline">
-            NYC rental market data, open and free.
+            Free NYC rental listing data, updated monthly.
           </p>
           <p className="section-subtitle" style={{ maxWidth: '600px', margin: '24px auto 0' }}>
-            We track thousands of NYC rental listings every month and publish the data, reports, and tools for anyone to use.
+            We collect rental listings from StreetEasy every month and publish everything as downloadable CSVs.
           </p>
         </div>
       </section>
@@ -23,7 +23,7 @@ export default function HomePage() {
           <Link href="/open-data" className="tool-card">
             <h3 className="tool-title">Open Data</h3>
             <p className="tool-description">
-              Monthly listing datasets and rent stabilized building records — free to download and use.
+              Monthly listing CSVs and a rent stabilized buildings database.
             </p>
           </Link>
 

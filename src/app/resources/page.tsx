@@ -17,13 +17,13 @@ const resources: Resource[] = [
   // Tools (our interactive stuff)
   {
     title: 'Find Your Neighborhood',
-    description: 'Answer a few questions about your budget, lifestyle, and commute to discover which NYC neighborhoods are your best fit.',
+    description: 'A short quiz that matches you to NYC neighborhoods based on your budget, lifestyle, and commute.',
     href: '/find-your-neighborhood',
     category: 'tools',
   },
   {
-    title: '🎯 Guess the Rent',
-    description: 'Think you know NYC rent prices? We show you real listings — you guess the monthly rent.',
+    title: 'Guess the Rent',
+    description: 'We show you real listings, you guess the monthly rent.',
     href: '/games/guess-the-rent',
     category: 'tools',
   },
@@ -50,7 +50,7 @@ const resources: Resource[] = [
   },
   {
     title: 'PadDaddy',
-    description: 'Factors in hidden aspects of apartments — price per sqft, distance to parks, broker fee amortization — and gives an overall deal score.',
+    description: 'Scores apartments on price per sqft, distance to parks, and broker fee amortization.',
     href: 'https://paddaddy.com',
     external: true,
     category: 'search',
@@ -64,7 +64,7 @@ const resources: Resource[] = [
   },
   {
     title: 'Unseen Apartments',
-    description: 'Hire locals to tour and vet apartments for you. Great for remote apartment hunting — they handle photos, videos, and walkthroughs.',
+    description: 'Hire locals to tour apartments for you. They send back photos, videos, and notes. Good for remote apartment hunting.',
     href: 'https://unseenapartments.io',
     external: true,
     category: 'search',
@@ -73,7 +73,7 @@ const resources: Resource[] = [
   // Building & Landlord Research
   {
     title: 'OpenIgloo',
-    description: 'Anonymous tenant reviews, rent-stabilized building map, violation history, bedbug data, and 311 complaints. The building background check.',
+    description: 'Tenant reviews, violation history, bedbug data, 311 complaints, and a rent-stabilized building map.',
     href: 'https://www.openigloo.com',
     external: true,
     category: 'research',
@@ -94,7 +94,7 @@ const resources: Resource[] = [
   },
   {
     title: 'Landlord Watchlist',
-    description: 'The 100 worst landlords in NYC ranked by average violation count. Quick check before signing a lease.',
+    description: 'The 100 worst landlords in NYC, ranked by average violation count.',
     href: 'https://www.landlordwatchlist.com',
     external: true,
     category: 'research',

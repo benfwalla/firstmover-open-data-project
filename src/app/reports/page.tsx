@@ -3,7 +3,7 @@ import { getPostsByType } from '@/lib/content';
 
 export const metadata = {
   title: 'Reports | FirstMover Open Data Project',
-  description: 'Monthly NYC rent reports with neighborhood-level analysis. Real data from real listings.',
+  description: 'Monthly NYC rent reports with neighborhood-level analysis.',
 };
 
 export default function ReportsPage() {

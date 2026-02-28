@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             rel="noopener noreferrer"
             className="cta-button-primary"
           >
-            Download FirstMover →
+            Download FirstMover
           </a>
         </div>
       </div>

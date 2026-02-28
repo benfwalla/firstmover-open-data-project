@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'Open Data | FirstMover Open Data Project',
-  description: 'NYC rental market datasets, open and free. Monthly listing data and rent stabilized building records.',
+  description: 'Free NYC rental listing data. Monthly CSVs and rent stabilized building records.',
 };
 
 const monthlyData: { month: string; file: string; count: number; note?: string }[] = [
@@ -25,7 +25,7 @@ export default function OpenDataPage() {
       <div className="section-header" style={{ marginBottom: '48px' }}>
         <h1 className="section-title" style={{ fontSize: '40px' }}>Open Data</h1>
         <p className="section-subtitle">
-          NYC rental market datasets, open and free.
+          Free NYC rental listing data.
         </p>
       </div>
 

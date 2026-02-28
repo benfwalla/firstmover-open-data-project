@@ -18,14 +18,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "FirstMover Open Data Project · NYC Rental Market Data",
   description:
-    "NYC rental market data, open and free. Monthly reports, open datasets, and interactive tools. Real data from real listings.",
+    "Free NYC rental listing data, updated monthly. Downloadable CSVs, rent reports, and tools for apartment hunters.",
   icons: {
     icon: '/favicon.png',
     apple: '/favicon.png',
   },
   openGraph: {
     title: "FirstMover Open Data Project · NYC Rental Market Data",
-    description: "NYC rental market data, open and free.",
+    description: "Free NYC rental listing data, updated monthly.",
     type: "website",
   },
 };
