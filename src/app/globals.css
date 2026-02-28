@@ -61,13 +61,10 @@ a:hover {
   border-radius: var(--radius);
   padding: 28px 24px;
   border: 1px solid var(--light-gray);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
 }
 
-.stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-}
+.stat-card:hover {}
 
 .stat-card .label {
   font-family: var(--font-body);
@@ -165,15 +162,11 @@ a:hover {
   border-radius: var(--radius);
   border: 1px solid var(--light-gray);
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
 }
 
-.listing-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-}
+.listing-card:hover {}
 
 .listing-card-photo {
   width: 100%;
@@ -1131,8 +1124,6 @@ a:hover {
 }
 
 .latest-report-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 48px rgba(0, 166, 126, 0.15);
   text-decoration: none;
 }
 
@@ -1188,9 +1179,6 @@ a:hover {
 }
 
 .tool-card:hover {
-  border-color: var(--blue);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 81, 255, 0.12);
   text-decoration: none;
 }
 
@@ -1619,7 +1607,7 @@ a:hover {
 .quiz-refresh-btn:disabled { opacity: 0.5; cursor: default; }
 .quiz-listings-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .quiz-listing-card { text-decoration: none; color: inherit; border-radius: 8px; overflow: hidden; border: 1px solid #eee; transition: box-shadow 0.2s; }
-.quiz-listing-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; }
+.quiz-listing-card:hover {  text-decoration: none; }
 .quiz-listing-img { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; }
 .quiz-listing-info { padding: 6px 8px; }
 .quiz-listing-price { font-weight: 700; font-size: 14px; display: block; }
@@ -1650,7 +1638,7 @@ a:hover {
 .gtr-progress-dot.active { background: var(--blue); transform: scale(1.2); }
 .gtr-progress-dot.done { background: var(--green); }
 
-.gtr-card { background: white; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--light-gray); box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+.gtr-card { background: white; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--light-gray); }
 .gtr-photo-wrap { position: relative; width: 100%; aspect-ratio: 16/10; background: var(--light-gray); overflow: hidden; }
 .gtr-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
 .gtr-photo-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #999; }
@@ -1685,7 +1673,7 @@ a:hover {
 .gtr-reveal-actual { color: var(--green); }
 .gtr-reveal-diff { text-align: center; font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 20px; }
 
-.gtr-results-card { background: white; border-radius: var(--radius); border: 1px solid var(--light-gray); overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+.gtr-results-card { background: white; border-radius: var(--radius); border: 1px solid var(--light-gray); overflow: hidden; }
 .gtr-results-header { text-align: center; padding: 40px 24px 24px; }
 .gtr-grade-emoji { font-size: 56px; display: block; margin-bottom: 12px; }
 .gtr-grade-label { font-family: var(--font-heading); font-size: 32px; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 4px; }
@@ -1792,7 +1780,7 @@ a:hover {
 }
 
 /* Intro screen */
-.gtr-intro-card { background: white; border-radius: var(--radius); border: 1px solid var(--light-gray); box-shadow: 0 4px 24px rgba(0,0,0,0.06); padding: 48px 32px 32px; text-align: center; }
+.gtr-intro-card { background: white; border-radius: var(--radius); border: 1px solid var(--light-gray); padding: 48px 32px 32px; text-align: center; }
 .gtr-intro-badge { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); background: rgba(59,130,246,0.08); padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; }
 .gtr-intro-title { font-family: var(--font-heading); font-size: 40px; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 8px; }
 .gtr-intro-subtitle { font-size: 17px; color: #666; line-height: 1.5; margin-bottom: 32px; }
@@ -1861,4 +1849,12 @@ a:hover {
   background: #003acc;
   border-color: #003acc;
   color: white;
+}
+
+/* Open Data cards */
+.open-data-card {
+  background: white;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius);
+  padding: 32px;
 }
