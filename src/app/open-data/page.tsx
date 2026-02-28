@@ -87,7 +87,7 @@ export default function OpenDataPage() {
               {monthlyData.map((d) => (
                 <tr key={d.file}>
                   <td>
-                    <a href={`/data/${d.file}`} download style={{ fontWeight: 500 }}>
+                    <a href={`https://raw.githubusercontent.com/benfwalla/firstmover-open-data-project/main/public/data/${d.file}`} download style={{ fontWeight: 500 }}>
                       {d.month}
                     </a>
                     {d.note && (
@@ -130,17 +130,6 @@ export default function OpenDataPage() {
             </tbody>
           </table>
         </div>
-      </div>
-
-      {/* Photo URL Pattern */}
-      <div className="open-data-card" style={{ marginTop: '32px' }}>
-        <h3 className="tool-title">Photo URL Pattern</h3>
-        <p className="tool-description" style={{ marginBottom: '12px' }}>
-          To construct a photo URL from a hash, use this pattern:
-        </p>
-        <code style={{ display: 'block', background: '#f5f5f5', padding: '12px 16px', borderRadius: '8px', fontSize: '13px', overflowX: 'auto' }}>
-          https://photos.zillowstatic.com/fp/&#123;hash&#125;-se_extra_large_1500_800.webp
-        </code>
       </div>
 
       {/* Rent Stabilized Buildings */}
