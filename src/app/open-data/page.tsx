@@ -17,7 +17,6 @@ const monthlyData: { month: string; file: string; count: number; note?: string }
   { month: 'April 2025', file: 'listings-april-2025.csv', count: 21473 },
   { month: 'March 2025', file: 'listings-march-2025.csv', count: 19740 },
   { month: 'February 2025', file: 'listings-february-2025.csv', count: 12387 },
-  { month: 'January 2025', file: 'listings-january-2025.csv', count: 9491, note: 'Partial month' },
 ];
 
 export default function OpenDataPage() {
