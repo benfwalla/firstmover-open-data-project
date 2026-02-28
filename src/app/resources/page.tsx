@@ -6,13 +6,13 @@ import Link from 'next/link';
 
 type Category = 'all' | 'tools' | 'search' | 'research' | 'guides';
 
-function getFaviconUrl(href: string, external?: boolean): string | null {
-  if (!external) return null;
+function getFaviconUrl(href: string, external?: boolean): string {
+  if (!external) return '/favicon.png';
   try {
     const domain = new URL(href).hostname;
     return `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
   } catch {
-    return null;
+    return '/favicon.png';
   }
 }
 
@@ -33,7 +33,7 @@ const resources: Resource[] = [
     category: 'tools',
   },
   {
-    title: 'Guess the Rent',
+    title: 'Guess the Rent Game',
     description: 'We show you real listings, you guess the monthly rent.',
     href: '/games/guess-the-rent',
     category: 'tools',
@@ -162,16 +162,14 @@ export default function ResourcesPage() {
           const inner = (
             <>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                {favicon && (
-                  <Image
-                    src={favicon}
-                    alt=""
-                    width={20}
-                    height={20}
-                    style={{ borderRadius: '4px', flexShrink: 0 }}
-                    unoptimized
-                  />
-                )}
+                <Image
+                  src={favicon}
+                  alt=""
+                  width={20}
+                  height={20}
+                  style={{ borderRadius: '4px', flexShrink: 0 }}
+                  unoptimized
+                />
                 <h3 className="tool-title" style={{ margin: 0 }}>
                   {r.title}
                   {r.external && <span style={{ fontSize: '13px', opacity: 0.4, marginLeft: '6px' }}>↗</span>}
