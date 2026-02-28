@@ -6,7 +6,7 @@ export const metadata = {
 const PHOTO_URL_PATTERN = 'https://photos.zillowstatic.com/fp/{id}-se_extra_large_1500_800.webp';
 
 const monthlyData: { month: string; file: string; count: number; note?: string }[] = [
-  { month: 'February 2026', file: '2026-02.csv', count: 16048 },
+  { month: 'February 2026', file: '2026-02.csv', count: 16059 },
   { month: 'January 2026', file: '2026-01.csv', count: 17538 },
   { month: 'December 2025', file: '2025-12.csv', count: 15434 },
   { month: 'November 2025', file: '2025-11.csv', count: 11139, note: 'Data not available Nov 1–7' },
@@ -22,6 +22,8 @@ const monthlyData: { month: string; file: string; count: number; note?: string }
 ];
 
 const COLUMNS = [
+  { name: 'created_at_utc', desc: 'When the listing first appeared on the market (UTC)' },
+  { name: 'available_date', desc: 'Move-in date' },
   { name: 'id', desc: 'Unique listing identifier' },
   { name: 'street', desc: 'Street address' },
   { name: 'unit', desc: 'Unit number' },
@@ -29,25 +31,22 @@ const COLUMNS = [
   { name: 'borough', desc: 'NYC borough or NJ' },
   { name: 'zip_code', desc: 'ZIP code' },
   { name: 'state', desc: 'State (NY, NJ)' },
-  { name: 'latitude', desc: 'Latitude coordinate' },
-  { name: 'longitude', desc: 'Longitude coordinate' },
+  { name: 'latitude', desc: 'Latitude' },
+  { name: 'longitude', desc: 'Longitude' },
   { name: 'building_type', desc: 'Building type' },
   { name: 'bedrooms', desc: 'Bedroom count (0 = studio)' },
-  { name: 'bathrooms', desc: 'Full bathroom count' },
-  { name: 'half_baths', desc: 'Half bathroom count' },
+  { name: 'bathrooms', desc: 'Full bathrooms' },
+  { name: 'half_baths', desc: 'Half bathrooms' },
   { name: 'sqft', desc: 'Square footage' },
   { name: 'furnished', desc: 'Whether the unit is furnished' },
   { name: 'is_new_development', desc: 'Whether the building is a new development' },
-  { name: 'price', desc: 'Monthly asking rent' },
-  { name: 'net_effective_price', desc: 'Net effective rent after concessions' },
   { name: 'lease_months', desc: 'Lease term in months' },
   { name: 'months_free', desc: 'Free months offered' },
+  { name: 'price', desc: 'Monthly asking rent' },
+  { name: 'net_effective_price', desc: 'Net effective rent after concessions' },
   { name: 'no_fee', desc: 'Whether there is no broker fee' },
-  { name: 'source_group_label', desc: 'Listing source/brokerage' },
+  { name: 'source_group', desc: 'Listing source/brokerage' },
   { name: 'source_type', desc: 'Source type (e.g. PARTNER)' },
-  { name: 'status', desc: 'Listing status' },
-  { name: 'created_at_utc', desc: 'When the listing was first seen (UTC)' },
-  { name: 'available_date', desc: 'Move-in date' },
   { name: 'has_videos', desc: 'Whether the listing has video' },
   { name: 'has_3d_tour', desc: 'Whether the listing has a 3D tour' },
   { name: 'media_asset_count', desc: 'Total media assets' },
@@ -55,7 +54,7 @@ const COLUMNS = [
   { name: 'photo_ids', desc: 'All StreetEasy photo IDs, comma-separated' },
   { name: 'open_house_start_utc', desc: 'Open house start time (UTC)' },
   { name: 'open_house_end_utc', desc: 'Open house end time (UTC)' },
-  { name: 'open_house_appointment_only', desc: 'Whether the open house is by appointment' },
+  { name: 'open_house_appointment_only', desc: 'Whether open house is by appointment' },
   { name: 'url', desc: 'Full StreetEasy listing URL' },
 ];
 
@@ -73,7 +72,7 @@ export default function OpenDataPage() {
       <div className="open-data-card">
         <h3 className="tool-title">Monthly Listing Data</h3>
         <p className="tool-description" style={{ marginBottom: '20px' }}>
-          Every month, we collect publicly available rental listings from StreetEasy and publish the raw data here for anyone to use. Each CSV contains 35 columns including address, coordinates, pricing, concessions, building details, media, open house info, and listing URLs. No copyrighted content like photos or descriptions is reproduced. This project is not affiliated with or endorsed by StreetEasy or Zillow Group.
+          Every month, we collect publicly available rental listings from StreetEasy and publish the raw data here for anyone to use. Each row represents a listing as it first appeared on the market. Listings may be updated after their initial posting (price changes, status updates, etc.) and those changes are not reflected here. Each CSV contains 34 columns including address, coordinates, pricing, concessions, building details, media, open house info, and listing URLs. No copyrighted content like descriptions is reproduced. This project is not affiliated with or endorsed by StreetEasy or Zillow Group.
         </p>
 
         <div className="table-wrapper">
@@ -106,23 +105,23 @@ export default function OpenDataPage() {
           </table>
         </div>
 
-        {/* Column Reference — collapsible, inside same card */}
+        {/* Column Reference — collapsible */}
         <details style={{ marginTop: '24px' }}>
           <summary style={{ cursor: 'pointer', fontWeight: 600, fontSize: '15px', color: 'var(--text)', padding: '8px 0' }}>
-            Column Reference (35 columns)
+            Column Reference (34 columns)
           </summary>
           <div className="table-wrapper" style={{ marginTop: '12px' }}>
             <table className="data-table" style={{ fontSize: '13px' }}>
               <thead>
                 <tr>
-                  <th>Column</th>
+                  <th style={{ width: '120px', minWidth: '100px' }}>Column</th>
                   <th>Description</th>
                 </tr>
               </thead>
               <tbody>
                 {COLUMNS.map((col) => (
                   <tr key={col.name}>
-                    <td><code style={{ fontSize: '12px', background: '#f5f5f5', padding: '2px 6px', borderRadius: '4px' }}>{col.name}</code></td>
+                    <td><code style={{ fontSize: '11px', background: '#f5f5f5', padding: '2px 5px', borderRadius: '4px' }}>{col.name}</code></td>
                     <td style={{ color: '#666' }}>{col.desc}</td>
                   </tr>
                 ))}

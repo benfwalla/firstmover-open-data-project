@@ -144,17 +144,20 @@ const BOROUGH_MAP = {
 
 // Column order — logically grouped
 const COLUMNS = [
+  // Timing
+  'created_at_utc', 'available_date',
   // Identity
   'id',
   // Location
   'street', 'unit', 'neighborhood', 'borough', 'zip_code', 'state', 'latitude', 'longitude',
   // Property details
   'building_type', 'bedrooms', 'bathrooms', 'half_baths', 'sqft', 'furnished', 'is_new_development',
+  // Lease terms (before pricing)
+  'lease_months', 'months_free',
   // Pricing
-  'price', 'net_effective_price', 'lease_months', 'months_free', 'no_fee',
+  'price', 'net_effective_price', 'no_fee',
   // Listing metadata
-  'source_group_label', 'source_type', 'status',
-  'created_at_utc', 'available_date',
+  'source_group', 'source_type',
   // Media
   'has_videos', 'has_3d_tour', 'media_asset_count', 'lead_photo_id', 'photo_ids',
   // Open house
@@ -196,13 +199,14 @@ function formatPhotoHashes(photosStr) {
 function rowToCSV(row) {
   const borough = BOROUGH_MAP[row.area_name] || '';
   const values = [
+    formatTimestamp(row.created_at), formatDate(row.available_at),
     row.id,
     row.street, row.unit, row.area_name, borough, row.zip_code, row.state, row.latitude, row.longitude,
     row.building_type, row.bedroom_count, row.full_bathroom_count, row.half_bathroom_count,
     row.living_area_size, row.furnished, row.is_new_development,
-    row.price, row.net_effective_price, row.lease_term, row.months_free, row.no_fee,
-    row.source_group_label, row.source_type, row.status,
-    formatTimestamp(row.created_at), formatDate(row.available_at),
+    row.lease_term, row.months_free,
+    row.price, row.net_effective_price, row.no_fee,
+    row.source_group_label, row.source_type,
     row.has_videos, row.has_tour_3d, row.media_asset_count,
     row.lead_media_photo || '',
     formatPhotoHashes(row.photos),
