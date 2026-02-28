@@ -103,7 +103,7 @@ const resources: Resource[] = [
     external: true,
     category: 'research',
   },
-  // Guides & Checklists
+  // Guides & Advice & Checklists
   {
     title: 'NYC Apartment Hunting Checklist',
     description: 'Exhaustive checklist from r/AskNYC (313 upvotes) covering building checks, unit checks, location checks, bugs, water pressure, violations, and more.',
@@ -115,6 +115,13 @@ const resources: Resource[] = [
     title: 'Ultimate NYC Renting 101',
     description: 'Comprehensive guide from r/AskNYC covering budget rules (40x rent), documents needed, timeline, broker fees, and the full rental process.',
     href: 'https://www.reddit.com/r/AskNYC/comments/bxgwx5/',
+    external: true,
+    category: 'guides',
+  },
+  {
+    title: 'Advice for NYC Apartment Seekers',
+    description: 'Practical tips from someone who posted a popular listing — lessons learned about the process, red flags, and how to stand out as an applicant.',
+    href: 'https://www.reddit.com/r/NYCapartments/comments/1efhsj0/',
     external: true,
     category: 'guides',
   },
