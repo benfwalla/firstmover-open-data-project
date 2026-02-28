@@ -62,7 +62,7 @@ const resources: Resource[] = [
   {
     title: 'PadDaddy',
     description: 'Scores apartments on price per sqft, distance to parks, and broker fee amortization.',
-    href: 'https://paddaddy.com',
+    href: 'https://paddaddy.app',
     external: true,
     category: 'search',
   },
@@ -103,14 +103,6 @@ const resources: Resource[] = [
     external: true,
     category: 'research',
   },
-  {
-    title: 'Landlord Watchlist',
-    description: 'The 100 worst landlords in NYC, ranked by average violation count.',
-    href: 'https://www.landlordwatchlist.com',
-    external: true,
-    category: 'research',
-  },
-
   // Guides & Checklists
   {
     title: 'NYC Apartment Hunting Checklist',
