@@ -156,7 +156,7 @@ const COLUMNS = [
   'source_group_label', 'source_type', 'status',
   'created_at_utc', 'available_date',
   // Media
-  'has_videos', 'has_3d_tour', 'media_asset_count', 'lead_photo_hash', 'photo_hashes',
+  'has_videos', 'has_3d_tour', 'media_asset_count', 'lead_photo_id', 'photo_ids',
   // Open house
   'open_house_start_utc', 'open_house_end_utc', 'open_house_appointment_only',
   // Link
@@ -267,12 +267,12 @@ async function main() {
     const r = await generateMonth(client, y, m);
     if (r) results.push(r);
   } else {
-    // Generate from Jan 2025 to current month
+    // Generate from Feb 2025 to current month (Jan 2025 excluded — corrupted data)
     const now = new Date();
     const endYear = now.getUTCFullYear();
     const endMonth = now.getUTCMonth() + 1;
     
-    let y = 2025, m = 1;
+    let y = 2025, m = 2;
     while (y < endYear || (y === endYear && m <= endMonth)) {
       const r = await generateMonth(client, y, m);
       if (r) results.push(r);

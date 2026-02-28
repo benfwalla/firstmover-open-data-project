@@ -3,12 +3,14 @@ export const metadata = {
   description: 'Free NYC rental listing data. Monthly CSVs and rent stabilized building records.',
 };
 
+const PHOTO_URL_PATTERN = 'https://photos.zillowstatic.com/fp/{id}-se_extra_large_1500_800.webp';
+
 const monthlyData: { month: string; file: string; count: number; note?: string }[] = [
   { month: 'February 2026', file: '2026-02.csv', count: 16048 },
   { month: 'January 2026', file: '2026-01.csv', count: 17538 },
   { month: 'December 2025', file: '2025-12.csv', count: 15434 },
-  { month: 'November 2025', file: '2025-11.csv', count: 11139, note: 'Scraper down Nov 1–7' },
-  { month: 'October 2025', file: '2025-10.csv', count: 16144, note: 'Scraper down Oct 27–31' },
+  { month: 'November 2025', file: '2025-11.csv', count: 11139, note: 'Data not available Nov 1–7' },
+  { month: 'October 2025', file: '2025-10.csv', count: 16144, note: 'Data not available Oct 27–31' },
   { month: 'September 2025', file: '2025-09.csv', count: 22559 },
   { month: 'August 2025', file: '2025-08.csv', count: 24360 },
   { month: 'July 2025', file: '2025-07.csv', count: 27303 },
@@ -17,7 +19,6 @@ const monthlyData: { month: string; file: string; count: number; note?: string }
   { month: 'April 2025', file: '2025-04.csv', count: 21473 },
   { month: 'March 2025', file: '2025-03.csv', count: 19740 },
   { month: 'February 2025', file: '2025-02.csv', count: 12387 },
-  { month: 'January 2025', file: '2025-01.csv', count: 9491, note: 'Some corrupted date_listed values' },
 ];
 
 const COLUMNS = [
@@ -50,8 +51,8 @@ const COLUMNS = [
   { name: 'has_videos', desc: 'Whether the listing has video' },
   { name: 'has_3d_tour', desc: 'Whether the listing has a 3D tour' },
   { name: 'media_asset_count', desc: 'Total media assets' },
-  { name: 'lead_photo_hash', desc: 'Primary photo hash (see photo URL pattern below)' },
-  { name: 'photo_hashes', desc: 'All photo hashes, comma-separated' },
+  { name: 'lead_photo_id', desc: 'Primary StreetEasy photo ID' },
+  { name: 'photo_ids', desc: 'All StreetEasy photo IDs, comma-separated' },
   { name: 'open_house_start_utc', desc: 'Open house start time (UTC)' },
   { name: 'open_house_end_utc', desc: 'Open house end time (UTC)' },
   { name: 'open_house_appointment_only', desc: 'Whether the open house is by appointment' },
@@ -104,32 +105,34 @@ export default function OpenDataPage() {
             </tbody>
           </table>
         </div>
-      </div>
 
-      {/* Column Reference */}
-      <div className="open-data-card" style={{ marginTop: '32px' }}>
-        <h3 className="tool-title">Column Reference</h3>
-        <p className="tool-description" style={{ marginBottom: '20px' }}>
-          All 35 columns included in each monthly CSV, in order.
-        </p>
-        <div className="table-wrapper">
-          <table className="data-table" style={{ fontSize: '13px' }}>
-            <thead>
-              <tr>
-                <th>Column</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              {COLUMNS.map((col) => (
-                <tr key={col.name}>
-                  <td><code style={{ fontSize: '12px', background: '#f5f5f5', padding: '2px 6px', borderRadius: '4px' }}>{col.name}</code></td>
-                  <td style={{ color: '#666' }}>{col.desc}</td>
+        {/* Column Reference — collapsible, inside same card */}
+        <details style={{ marginTop: '24px' }}>
+          <summary style={{ cursor: 'pointer', fontWeight: 600, fontSize: '15px', color: 'var(--text)', padding: '8px 0' }}>
+            Column Reference (35 columns)
+          </summary>
+          <div className="table-wrapper" style={{ marginTop: '12px' }}>
+            <table className="data-table" style={{ fontSize: '13px' }}>
+              <thead>
+                <tr>
+                  <th>Column</th>
+                  <th>Description</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {COLUMNS.map((col) => (
+                  <tr key={col.name}>
+                    <td><code style={{ fontSize: '12px', background: '#f5f5f5', padding: '2px 6px', borderRadius: '4px' }}>{col.name}</code></td>
+                    <td style={{ color: '#666' }}>{col.desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p style={{ fontSize: '13px', color: '#999', marginTop: '12px' }}>
+            Photo URL pattern: <code style={{ fontSize: '12px', background: '#f5f5f5', padding: '2px 6px', borderRadius: '4px' }}>{PHOTO_URL_PATTERN}</code>
+          </p>
+        </details>
       </div>
 
       {/* Rent Stabilized Buildings */}
