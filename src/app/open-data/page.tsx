@@ -1,13 +1,19 @@
 import DownloadLink from '@/components/DownloadLink';
+import DownloadAllButton from '@/components/DownloadAllButton';
 
 export const metadata = {
   title: 'Open Data | FirstMover Open Data Project',
   description: 'Free NYC rental listing data. Monthly CSVs and rent stabilized building records.',
 };
 
-const PHOTO_URL_PATTERN = 'https://photos.zillowstatic.com/fp/{id}-se_extra_large_1500_800.webp';
-
 const DATA_BASE = 'https://raw.githubusercontent.com/benfwalla/firstmover-open-data-project/main/public/data';
+
+const MONTH_ABBRS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function toDownloadName(file: string): string {
+  const [yyyy, mm] = file.replace('.csv', '').split('-');
+  return `${yyyy}-${MONTH_ABBRS[+mm - 1]}-nyc-rental-listings.csv`;
+}
 
 const monthlyData = [
   { month: 'February 2026', file: '2026-02.csv', count: 16059 },
@@ -54,8 +60,8 @@ const COLUMNS = [
   { name: 'has_videos', desc: 'Whether the listing has video' },
   { name: 'has_3d_tour', desc: 'Whether the listing has a 3D tour' },
   { name: 'media_asset_count', desc: 'Total media assets' },
-  { name: 'lead_photo_id', desc: 'Primary StreetEasy photo ID' },
-  { name: 'photo_ids', desc: 'All StreetEasy photo IDs, comma-separated' },
+  { name: 'lead_photo_id', desc: 'Primary StreetEasy photo ID. URL pattern: https://photos.zillowstatic.com/fp/{id}-se_extra_large_1500_800.webp' },
+  { name: 'photo_ids', desc: 'All StreetEasy photo IDs, comma-separated. URL pattern: https://photos.zillowstatic.com/fp/{id}-se_extra_large_1500_800.webp' },
   { name: 'open_house_start_utc', desc: 'Open house start time (UTC)' },
   { name: 'open_house_end_utc', desc: 'Open house end time (UTC)' },
   { name: 'open_house_appointment_only', desc: 'Whether open house is by appointment' },
@@ -72,9 +78,16 @@ export default function OpenDataPage() {
 
       <div className="open-data-card">
         <h3 className="tool-title">Monthly Listing Data</h3>
-        <p className="tool-description" style={{ marginBottom: '20px' }}>
-          Every month, we collect publicly available rental listings from StreetEasy and publish the raw data here for anyone to use. Each row represents a listing as it first appeared on the market. Listings may be updated after their initial posting (price changes, status updates, etc.) and those changes are not reflected here. Each CSV contains 34 columns including address, coordinates, pricing, concessions, building details, media, open house info, and listing URLs. No copyrighted content like descriptions is reproduced. This project is not affiliated with or endorsed by StreetEasy or Zillow Group.
+        <p className="tool-description" style={{ marginBottom: '12px' }}>
+          Every month, we collect publicly available rental listings and publish the raw data here for anyone to use. Each row represents a listing as it first appeared on the market. Listings may be updated after their initial posting (price changes, status updates, etc.) and those changes are not reflected here.
         </p>
+        <p className="tool-description" style={{ marginBottom: '20px' }}>
+          Each CSV contains 34 columns, referenced below. No copyrighted content like descriptions is reproduced. This project is not affiliated with or endorsed by StreetEasy or Zillow Group.
+        </p>
+
+        <div style={{ marginBottom: '20px', textAlign: 'right' }}>
+          <DownloadAllButton files={monthlyData.map((d) => ({ url: `${DATA_BASE}/${d.file}`, downloadName: toDownloadName(d.file) }))} />
+        </div>
 
         <div className="table-wrapper">
           <table className="data-table" style={{ fontSize: '14px' }}>
@@ -82,18 +95,23 @@ export default function OpenDataPage() {
               <tr>
                 <th>Month</th>
                 <th style={{ textAlign: 'right' }}>Listings</th>
+                <th style={{ textAlign: 'right' }}>CSV</th>
               </tr>
             </thead>
             <tbody>
               {monthlyData.map((d) => (
                 <tr key={d.file}>
-                  <td>
-                    <DownloadLink href={`${DATA_BASE}/${d.file}`} filename={d.file} style={{ fontWeight: 500 }}>
-                      {d.month}
-                    </DownloadLink>
+                  <td style={{ fontWeight: 500 }}>
+                    {d.month}
                     {d.note && <span style={{ fontSize: '12px', color: '#999', marginLeft: '8px' }}>*{d.note}</span>}
                   </td>
                   <td style={{ textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{d.count.toLocaleString()}</td>
+                  <td style={{ textAlign: 'right' }}>
+                    <DownloadLink
+                      href={`${DATA_BASE}/${d.file}`}
+                      filename={toDownloadName(d.file)}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -122,18 +140,15 @@ export default function OpenDataPage() {
               </tbody>
             </table>
           </div>
-          <p style={{ fontSize: '13px', color: '#999', marginTop: '12px' }}>
-            Photo URL pattern: <code style={{ fontSize: '12px', background: '#f5f5f5', padding: '2px 6px', borderRadius: '4px' }}>{PHOTO_URL_PATTERN}</code>
-          </p>
         </details>
       </div>
 
       <div className="open-data-card" style={{ marginTop: '32px' }}>
         <h3 className="tool-title">Rent Stabilized Buildings</h3>
-        <p className="tool-description" style={{ marginBottom: '16px' }}>
+        <p className="tool-description" style={{ marginBottom: '12px' }}>
           The NYC Rent Guidelines Board publishes rent-stabilized building data across all five boroughs, but it lives in PDFs that are hard to work with. We cleaned and standardized the listings, made them searchable, and added latitude/longitude coordinates so anyone can map the buildings.
         </p>
-        <p className="tool-description" style={{ fontSize: '13px', color: '#999', marginBottom: '20px' }}>
+        <p className="tool-description" style={{ marginBottom: '20px' }}>
           The Rent Guidelines Board notes its data &ldquo;...do not indicate which apartments in these buildings are rent stabilized, but rather, only those buildings that contain at least one rent stabilized unit.&rdquo; This is a hobby project and is not affiliated with NYC.gov.
         </p>
         <a href="https://docs.google.com/spreadsheets/d/1_yUjWl9Z1z6T_8oRqXscOU6KFV25ECYgVO69lORFyxI/edit?usp=drivesdk" target="_blank" rel="noopener noreferrer" className="cta-button" style={{ fontSize: '14px', padding: '10px 24px' }}>

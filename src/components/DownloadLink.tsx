@@ -1,25 +1,27 @@
 'use client';
 
-export default function DownloadLink({ href, filename, children, ...props }: { href: string; filename: string; children: React.ReactNode; [key: string]: any }) {
+import { DownloadSimple } from '@phosphor-icons/react';
+import { triggerBlobDownload } from '@/lib/utils';
+
+export default function DownloadLink({ href, filename }: { href: string; filename: string }) {
   return (
     <a
       href={href}
-      {...props}
       onClick={(e) => {
         e.preventDefault();
         fetch(href)
-          .then(r => r.blob())
-          .then(blob => {
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            a.click();
-            URL.revokeObjectURL(url);
+          .then(r => {
+            if (!r.ok) throw new Error(`Failed to fetch ${filename}`);
+            return r.blob();
+          })
+          .then(blob => triggerBlobDownload(blob, filename))
+          .catch(err => {
+            console.error('Download failed:', err);
+            alert('Download failed. Please try again.');
           });
       }}
     >
-      {children}
+      <DownloadSimple size={20} weight="bold" color="#000" />
     </a>
   );
 }

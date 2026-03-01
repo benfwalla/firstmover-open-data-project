@@ -27,6 +27,13 @@ body {
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -875,12 +882,22 @@ a:hover {
   font-size: 15px;
   color: var(--text);
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 .nav-link:hover {
-  color: var(--blue);
   text-decoration: none;
+}
+
+.nav-github {
+  display: flex;
+  align-items: center;
+  color: black;
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+}
+
+.nav-github:hover {
+  opacity: 1;
 }
 
 .nav-mobile-button {
