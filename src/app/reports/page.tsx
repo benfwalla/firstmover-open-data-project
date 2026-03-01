@@ -29,7 +29,7 @@ export default function ReportsPage() {
               })}
               {post.frontmatter.readTime && ` · ${post.frontmatter.readTime}`}
             </div>
-            <p className="blog-post-excerpt">{post.frontmatter.description}</p>
+            {/* description omitted — title already conveys the month */}
           </Link>
         ))}
       </div>
