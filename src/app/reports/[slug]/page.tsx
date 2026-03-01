@@ -74,7 +74,17 @@ export default async function ReportPage({ params }: ReportPageProps) {
       </div>
     ),
     DataTable: (props: any) => (
-      <DataTable data={neighborhoodData} {...props} />
+      <DataTable
+        columns={[
+          { header: '#', key: 'rank' },
+          { header: 'Neighborhood', key: 'neighborhood' },
+          { header: 'Listings', key: 'listings', render: (v: number) => v.toLocaleString() },
+          { header: 'Median Rent', key: 'median_rent', render: (v: number) => `$${Math.round(v).toLocaleString()}` },
+          { header: 'MoM', key: 'pct_change', render: (v: number) => `${v > 0 ? '+' : ''}${v}%` },
+        ]}
+        data={neighborhoodData}
+        {...props}
+      />
     ),
     DataAttribution,
   });
