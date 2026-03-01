@@ -1,14 +1,13 @@
 import { NextRequest } from 'next/server';
-import { getDBClient } from '@/lib/db';
+import { getPool } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
-  let client;
   try {
     const { searchParams } = new URL(request.url);
     const beds = searchParams.get('beds');
     const budget = searchParams.get('budget');
-    
-    client = await getDBClient();
+
+    const pool = getPool();
     
     let query = `
       SELECT 
@@ -45,7 +44,7 @@ export async function GET(request: NextRequest) {
       LIMIT 50
     `;
     
-    const result = await client.query(query, params);
+    const result = await pool.query(query, params);
     
     const neighborhoodMap = new Map();
     
@@ -76,7 +75,5 @@ export async function GET(request: NextRequest) {
       { error: 'Failed to fetch neighborhood data', detail: error?.message },
       { status: 500 }
     );
-  } finally {
-    if (client) await client.end().catch(() => {});
   }
 }

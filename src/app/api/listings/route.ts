@@ -1,8 +1,7 @@
 import { NextRequest } from 'next/server';
-import { getDBClient } from '@/lib/db';
+import { getPool } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
-  let client;
   try {
     const { searchParams } = new URL(request.url);
     const neighborhood = searchParams.get('neighborhood');
@@ -11,8 +10,8 @@ export async function GET(request: NextRequest) {
     const maxPrice = searchParams.get('maxPrice');
     const nearPrice = searchParams.get('nearPrice');
     const limit = parseInt(searchParams.get('limit') || '10');
-    
-    client = await getDBClient();
+
+    const pool = getPool();
     
     let query = `
       SELECT 
@@ -63,7 +62,7 @@ export async function GET(request: NextRequest) {
       params.push(limit);
     }
     
-    const result = await client.query(query, params);
+    const result = await pool.query(query, params);
     
     const listings = result.rows.map(row => ({
       id: row.id,
@@ -86,7 +85,5 @@ export async function GET(request: NextRequest) {
       { error: 'Failed to fetch listing data', detail: error?.message },
       { status: 500 }
     );
-  } finally {
-    if (client) await client.end().catch(() => {});
   }
 }

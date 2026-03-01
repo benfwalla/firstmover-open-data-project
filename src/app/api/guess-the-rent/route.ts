@@ -1,4 +1,4 @@
-import { getDBClient } from '@/lib/db';
+import { getPool } from '@/lib/db';
 
 const POPULAR_NEIGHBORHOODS = [
   'Williamsburg', 'Bushwick', 'Astoria', 'Crown Heights', 'East Village',
@@ -10,25 +10,59 @@ const POPULAR_NEIGHBORHOODS = [
   'Upper East Side', 'Lower East Side', 'Midtown', 'Boerum Hill',
 ];
 
+// Cache eligible listing IDs so each request only picks 5 random ones
+let cachedIds: number[] = [];
+let cacheTime = 0;
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+async function getEligibleIds(): Promise<number[]> {
+  if (cachedIds.length > 0 && Date.now() - cacheTime < CACHE_TTL) {
+    return cachedIds;
+  }
+  const pool = getPool();
+  const placeholders = POPULAR_NEIGHBORHOODS.map((_, i) => `$${i + 1}`).join(', ');
+  const result = await pool.query(`
+    SELECT id FROM listings
+    WHERE created_at >= NOW() - INTERVAL '10 days'
+      AND price > 1000 AND price < 15000
+      AND lead_media_photo IS NOT NULL AND lead_media_photo != ''
+      AND photos IS NOT NULL AND photos != '' AND array_length(string_to_array(photos, ','), 1) >= 2
+      AND bedroom_count >= 0
+      AND area_name IN (${placeholders})
+  `, POPULAR_NEIGHBORHOODS);
+  cachedIds = result.rows.map(r => r.id);
+  cacheTime = Date.now();
+  return cachedIds;
+}
+
+function pickRandom<T>(arr: T[], n: number): T[] {
+  const copy = [...arr];
+  const result: T[] = [];
+  for (let i = 0; i < n && copy.length > 0; i++) {
+    const idx = Math.floor(Math.random() * copy.length);
+    result.push(copy.splice(idx, 1)[0]);
+  }
+  return result;
+}
+
 export async function GET() {
-  let client;
   try {
-    client = await getDBClient();
-    const placeholders = POPULAR_NEIGHBORHOODS.map((_, i) => `$${i + 1}`).join(', ');
-    const result = await client.query(`
+    const pool = getPool();
+    const ids = await getEligibleIds();
+    const picked = pickRandom(ids, 5);
+
+    if (picked.length === 0) {
+      return Response.json([]);
+    }
+
+    const placeholders = picked.map((_, i) => `$${i + 1}`).join(', ');
+    const result = await pool.query(`
       SELECT id, area_name, street, unit, price, bedroom_count,
              full_bathroom_count, living_area_size, lead_media_photo, photos,
              EXTRACT(EPOCH FROM (NOW() - created_at)) / 60 AS minutes_ago
       FROM listings
-      WHERE created_at >= NOW() - INTERVAL '30 days'
-        AND price > 1000 AND price < 15000
-        AND lead_media_photo IS NOT NULL AND lead_media_photo != ''
-        AND photos IS NOT NULL AND photos != '' AND array_length(string_to_array(photos, ','), 1) >= 2
-        AND bedroom_count >= 0
-        AND area_name IN (${placeholders})
-      ORDER BY RANDOM()
-      LIMIT 5
-    `, POPULAR_NEIGHBORHOODS);
+      WHERE id IN (${placeholders})
+    `, picked);
 
     const listings = result.rows.map(row => {
       const photoHashes = row.photos ? row.photos.split(',') : [row.lead_media_photo];
@@ -50,7 +84,5 @@ export async function GET() {
   } catch (error: any) {
     console.error('Guess the Rent API error:', error?.message);
     return Response.json({ error: 'Failed to fetch listings' }, { status: 500 });
-  } finally {
-    if (client) await client.end().catch(() => {});
   }
 }

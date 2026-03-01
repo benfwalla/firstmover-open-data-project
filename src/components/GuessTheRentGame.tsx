@@ -187,7 +187,6 @@ export function GuessTheRentGame() {
           <div className="gtr-intro-badge">🏠 NYC RENTAL GAME</div>
           <h1 className="gtr-intro-title">Guess the Rent</h1>
           <p className="gtr-intro-subtitle">
-            Real listings. Real prices.<br />
             Think you know what NYC apartments cost?
           </p>
           <div className="gtr-intro-rules">
@@ -201,7 +200,7 @@ export function GuessTheRentGame() {
             </div>
             <div className="gtr-intro-rule">
               <span className="gtr-intro-rule-icon">🎯</span>
-              <span>5 listings, closest guess wins</span>
+              <span>5 listings, see how close you get</span>
             </div>
           </div>
           <button className="gtr-btn-primary gtr-btn-full" onClick={startGame}>
@@ -301,6 +300,7 @@ export function GuessTheRentGame() {
         {listings.map((_, i) => (
           <div key={i} className={`gtr-progress-dot ${i < current ? 'done' : i === current ? 'active' : ''}`} />
         ))}
+        <span className="gtr-progress-label">{current + 1} of {listings.length}</span>
       </div>
 
       <div className="gtr-card">
@@ -347,9 +347,11 @@ export function GuessTheRentGame() {
               </div>
             </>
           )}
-          <div className="gtr-photo-badge">
-            {current + 1} / {listings.length}
-          </div>
+          {listing.photos.length > 1 && (
+            <div className="gtr-photo-badge">
+              {photoIndex + 1} / {listing.photos.length}
+            </div>
+          )}
           {listing.listed_minutes_ago != null && (
             <div className="gtr-listed-ago">
               {formatListedAgo(listing.listed_minutes_ago)}
@@ -456,7 +458,7 @@ export function GuessTheRentGame() {
                  results[results.length - 1].pctOff <= 15 ? '👏 Close!' :
                  results[results.length - 1].pctOff <= 30 ? '😬 Not quite' :
                  '💀 Way off'}
-                {' — '}{results[results.length - 1].pctOff}% off
+                {' - '}{results[results.length - 1].pctOff}% off
               </div>
               <button className="gtr-btn-primary gtr-btn-full" onClick={next}>
                 {current + 1 >= listings.length ? 'See Results' : 'Next Listing'}
