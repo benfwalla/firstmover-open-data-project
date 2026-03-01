@@ -1015,7 +1015,7 @@ a:hover {
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   row-gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .home-intro {
@@ -1115,7 +1115,6 @@ a:hover {
   line-height: 1.5;
 }
 
-/* Latest Report Card */
 /* Tools Grid */
 .tools-grid {
   display: grid;
@@ -1131,7 +1130,8 @@ a:hover {
   text-decoration: none;
   color: inherit;
   transition: all 0.2s ease;
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .tool-card:hover {
@@ -1141,8 +1141,9 @@ a:hover {
 .tool-card-preview-wrapper {
   position: relative;
   overflow: hidden;
-  max-height: 150px;
-  margin-top: 16px;
+  max-height: 190px;
+  margin-top: auto;
+  padding-top: 16px;
 }
 
 .tool-card-preview-wrapper::after {
@@ -1633,9 +1634,3 @@ a:hover {
 }
 
 /* Open Data cards */
-.open-data-card {
-  background: white;
-  border: 1px solid var(--light-gray);
-  border-radius: var(--radius);
-  padding: 32px;
-}

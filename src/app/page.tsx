@@ -9,8 +9,8 @@ export default function HomePage() {
           <div className="home-intro">
             <h1 className="publication-title">The FirstMover Open Data Project</h1>
             <p className="home-description">
-              We aim to democratize NYC rental data and resources for renters and analysts.
-              Free monthly listing data, tools, and guides updated every month.
+              Democratizing NYC rental data and resources for renters and analysts.
+              Free listing data, tools, and guides updated every month.
             </p>
             <div className="home-links">
               <Link href="/about" className="home-about-link">About</Link>
@@ -33,15 +33,18 @@ export default function HomePage() {
           <Link href="/reports" className="tool-card">
             <h3 className="tool-title">Reports</h3>
             <p className="tool-description">
-              Monthly rent reports breaking down what&rsquo;s happening across NYC neighborhoods.
+              Monthly rent reports breaking down what's happening across NYC.
             </p>
+            <div className="tool-card-preview-wrapper">
+              <img src="/images/reports_preview.png" alt="Reports preview" className="tool-card-preview" />
+            </div>
           </Link>
 
           {/* Bottom-right: Resources */}
           <Link href="/resources" className="tool-card">
             <h3 className="tool-title">Resources</h3>
             <p className="tool-description">
-              Interactive tools and games to explore NYC&rsquo;s rental market.
+              Interactive tools and sites to explore NYC's rental market.
             </p>
             <div className="tool-card-preview-wrapper">
               <img src="/images/resource_preview.svg" alt="Resources preview" className="tool-card-preview" />

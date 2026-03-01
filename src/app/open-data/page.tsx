@@ -76,7 +76,7 @@ export default function OpenDataPage() {
         <p className="section-subtitle">Free NYC rental listing data.</p>
       </div>
 
-      <div className="open-data-card">
+      <div className="tool-card">
         <h3 className="tool-title">Monthly Listing Data</h3>
         <p className="tool-description" style={{ marginBottom: '12px' }}>
           Every month, we collect publicly available rental listings and publish the raw data here for anyone to use. Each row represents a listing as it first appeared on the market. Listings may be updated after their initial posting (price changes, status updates, etc.) and those changes are not reflected here.
@@ -146,7 +146,7 @@ export default function OpenDataPage() {
         </details>
       </div>
 
-      <div className="open-data-card" style={{ marginTop: '32px' }}>
+      <div className="tool-card" style={{ marginTop: '32px' }}>
         <h3 className="tool-title">Rent Stabilized Buildings</h3>
         <p className="tool-description" style={{ marginBottom: '12px' }}>
           The NYC Rent Guidelines Board publishes rent-stabilized building data across all five boroughs, but it lives in PDFs that are hard to work with. We cleaned and standardized the listings, made them searchable, and added latitude/longitude coordinates so anyone can map the buildings.
