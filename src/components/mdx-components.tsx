@@ -28,62 +28,44 @@ export function StatCards({ data }: StatCardsProps) {
   );
 }
 
-interface DataTableColumn {
-  header: string;
-  key: string;
-  render?: (value: any, row: any) => React.ReactNode;
-}
-
+// Neighborhood ranking table — auto-formats from standard data shape
 interface DataTableProps {
-  columns: DataTableColumn[];
-  data: any[];
+  data: { rank: number; neighborhood: string; listings: number; median_rent: number; price_change?: number; pct_change?: number }[];
   caption?: string;
 }
 
-export function DataTable({ columns, data, caption }: DataTableProps) {
-  const formatPrice = (n: number): string => {
-    return '$' + Math.round(n).toLocaleString('en-US');
-  };
-
-  const formatNumber = (n: number | string): string => {
-    return Math.round(typeof n === 'string' ? parseInt(n) : n).toLocaleString('en-US');
-  };
-
-  const formatPercent = (n: number): string => {
-    const sign = n > 0 ? '+' : '';
-    return `${sign}${n}%`;
-  };
+export function DataTable({ data, caption }: DataTableProps) {
+  if (!data || data.length === 0) return null;
 
   return (
     <div style={{ margin: '32px 0' }}>
       <div className="table-wrapper">
-        <table className="data-table">
+        <table className="data-table" style={{ fontSize: '14px' }}>
           <thead>
             <tr>
-              {columns.map((column, index) => (
-                <th key={index}>{column.header}</th>
-              ))}
+              <th>#</th>
+              <th>Neighborhood</th>
+              <th style={{ textAlign: 'right' }}>Listings</th>
+              <th style={{ textAlign: 'right' }}>Median Rent</th>
+              <th style={{ textAlign: 'right' }}>MoM</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                {columns.map((column, colIndex) => (
-                  <td key={colIndex}>
-                    {column.render 
-                      ? column.render(row[column.key], row)
-                      : row[column.key]
-                    }
-                  </td>
-                ))}
+            {data.map((row) => (
+              <tr key={row.rank}>
+                <td>{row.rank}</td>
+                <td style={{ fontWeight: 500 }}>{row.neighborhood}</td>
+                <td style={{ textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{row.listings.toLocaleString()}</td>
+                <td style={{ textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>${Math.round(row.median_rent).toLocaleString()}</td>
+                <td style={{ textAlign: 'right', fontVariantNumeric: 'tabular-nums', color: (row.pct_change || 0) < 0 ? '#e53e3e' : (row.pct_change || 0) > 0 ? '#38a169' : '#888' }}>
+                  {(row.pct_change || 0) > 0 ? '+' : ''}{row.pct_change || 0}%
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      {caption && (
-        <DataAttribution text={caption} />
-      )}
+      {caption && <DataAttribution text={caption} />}
     </div>
   );
 }
