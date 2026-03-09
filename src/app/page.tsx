@@ -14,6 +14,7 @@ export default function HomePage() {
             </p>
             <div className="home-links">
               <Link href="/about" className="home-about-link">About</Link>
+              <Link href="/newsletter" className="home-about-link">Newsletter</Link>
               <a href="https://github.com/benfwalla/firstmover-open-data-project" target="_blank" rel="noopener noreferrer" className="home-about-link">GitHub <span style={{ fontSize: '13px', color: 'black' }}>↗</span></a>
             </div>
           </div>
