@@ -129,24 +129,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           marginTop: '48px',
           textAlign: 'center'
         }}>
-          <p style={{ margin: '0 0 16px 0', fontSize: '16px', fontWeight: '600' }}>
-            Want more NYC rental insights?
+          <p style={{ margin: '0 0 4px 0', fontSize: '16px', fontWeight: 600 }}>
+            Get new posts in your inbox
           </p>
-          <Link
-            href="/blog"
-            className="cta-button-secondary"
-            style={{ marginRight: '16px' }}
-          >
-            ← More Blog Posts
+          <p style={{ margin: '0 0 16px 0', fontSize: '14px', color: '#666' }}>
+            Monthly updates on NYC rent trends and neighborhood data.
+          </p>
+          <Link href="/newsletter" className="cta-button" style={{ fontSize: '14px', padding: '10px 24px', background: 'var(--text)', marginRight: '12px' }}>
+            Subscribe
           </Link>
-          <a
-            href="https://apps.apple.com/us/app/firstmover/id6740444528"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cta-button-primary"
-          >
-            Download FirstMover
-          </a>
+          <Link href="/blog" className="cta-button-secondary" style={{ fontSize: '14px', padding: '10px 24px' }}>
+            More Posts
+          </Link>
         </div>
       </div>
     </div>

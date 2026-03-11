@@ -14,11 +14,16 @@ export default function BlogIndexPage() {
 
   return (
     <div className="publication-section narrow">
-      <div className="section-header">
-        <h1 className="section-title" style={{ fontSize: '40px' }}>Blog</h1>
-        <p className="section-subtitle">
-          Data-driven insights on NYC&apos;s rental market.
-        </p>
+      <div className="section-header" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+        <div>
+          <h1 className="section-title" style={{ fontSize: '40px' }}>Blog</h1>
+          <p className="section-subtitle">
+            Data-driven insights on NYC&apos;s rental market.
+          </p>
+        </div>
+        <Link href="/newsletter" className="cta-button" style={{ fontSize: '13px', padding: '6px 16px', background: 'var(--text)', whiteSpace: 'nowrap' }}>
+          Subscribe
+        </Link>
       </div>
 
       <div className="blog-posts-list">
