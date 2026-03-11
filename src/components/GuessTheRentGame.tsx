@@ -185,7 +185,7 @@ export function GuessTheRentGame() {
       <div className="gtr-container">
         <div className="gtr-intro-card">
           <div className="gtr-intro-badge">🏠 NYC RENTAL GAME</div>
-          <h2 className="gtr-intro-title">Guess the Rent</h1>
+          <h2 className="gtr-intro-title">Guess the Rent</h2>
           <p className="gtr-intro-subtitle">
             Think you know what NYC apartments cost?
           </p>
