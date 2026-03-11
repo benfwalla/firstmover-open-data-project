@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 export default function GuessTheRentPage() {
   return (
     <main className="gtr-page">
+      <h1 className="sr-only">Guess the Rent - NYC Rental Price Game</h1>
       <Suspense fallback={
         <div className="gtr-container">
           <div className="gtr-loading">

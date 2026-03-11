@@ -26,6 +26,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 export default function FindYourNeighborhoodPage() {
   return (
     <div className="quiz-page">
+      <h1 className="sr-only">Find Your NYC Neighborhood</h1>
       <Suspense fallback={<div>Loading...</div>}>
         <FindYourNeighborhoodQuiz />
       </Suspense>

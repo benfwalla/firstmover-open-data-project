@@ -185,7 +185,7 @@ export function GuessTheRentGame() {
       <div className="gtr-container">
         <div className="gtr-intro-card">
           <div className="gtr-intro-badge">🏠 NYC RENTAL GAME</div>
-          <h1 className="gtr-intro-title">Guess the Rent</h1>
+          <h2 className="gtr-intro-title">Guess the Rent</h1>
           <p className="gtr-intro-subtitle">
             Think you know what NYC apartments cost?
           </p>
@@ -220,7 +220,7 @@ export function GuessTheRentGame() {
         <div className="gtr-results-card">
           <div className="gtr-results-header">
             <span className="gtr-grade-emoji">{grade.emoji}</span>
-            <h1 className="gtr-grade-label">{grade.label}</h1>
+            <h2 className="gtr-grade-label">{grade.label}</h2>
             <p className="gtr-grade-desc">{grade.desc}</p>
           </div>
 

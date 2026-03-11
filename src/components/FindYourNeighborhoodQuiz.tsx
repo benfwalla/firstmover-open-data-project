@@ -254,7 +254,7 @@ export function FindYourNeighborhoodQuiz() {
         {/* Step 1: Budget + Bedrooms */}
         {quiz.step === 1 && (
           <div className="quiz-step">
-            <h1 className="quiz-question">What's your budget and bedroom needs?</h1>
+            <h2 className="quiz-question">What's your budget and bedroom needs?</h2>
             
             <div style={{ marginBottom: '32px' }}>
               <div className="quiz-mode-toggle">
@@ -306,7 +306,7 @@ export function FindYourNeighborhoodQuiz() {
         {/* Step 2: Vibe */}
         {quiz.step === 2 && (
           <div className="quiz-step">
-            <h1 className="quiz-question">What's your vibe?</h1>
+            <h2 className="quiz-question">What's your vibe?</h2>
             <p className="quiz-subtitle">Select all that apply, or skip</p>
             <div className="vibe-options">
               {Object.keys(VIBE_MAPPING).map(vibe => (
@@ -321,7 +321,7 @@ export function FindYourNeighborhoodQuiz() {
         {/* Step 3: Commute */}
         {quiz.step === 3 && (
           <div className="quiz-step">
-            <h1 className="quiz-question">Where's your commute?</h1>
+            <h2 className="quiz-question">Where's your commute?</h2>
             <p className="quiz-subtitle">Select one, or skip</p>
             <div className="commute-options">
               {Object.entries(COMMUTE_HUBS).map(([key, label]) => (
@@ -336,7 +336,7 @@ export function FindYourNeighborhoodQuiz() {
         {quiz.step === 4 && (
           <div className="quiz-step">
             <div className="quiz-results-header">
-              <h1 className="quiz-question quiz-results-title">Your top neighborhoods</h1>
+              <h2 className="quiz-question quiz-results-title">Your top neighborhoods</h2>
               <div className="quiz-results-params">
                 <span className="quiz-param-tag">{formatPrice(quiz.budget)}/mo</span>
                 <span className="quiz-param-tag">{quiz.bedrooms === 0 ? 'Studio' : `${quiz.bedrooms}BR`}</span>
