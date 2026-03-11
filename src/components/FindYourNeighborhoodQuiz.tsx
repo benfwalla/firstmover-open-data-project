@@ -158,7 +158,7 @@ export function FindYourNeighborhoodQuiz() {
     if (quiz.bedrooms) params.set('beds', quiz.bedrooms.toString());
     if (quiz.vibes.length > 0) params.set('vibes', quiz.vibes.join(','));
     if (quiz.commute) params.set('commute', quiz.commute);
-    window.history.pushState({}, '', `/find-your-neighborhood?${params.toString()}`);
+    window.history.pushState({}, '', `/tools/find-your-neighborhood?${params.toString()}`);
   };
 
   const loadResults = async () => {
@@ -234,7 +234,7 @@ export function FindYourNeighborhoodQuiz() {
   const reset = () => {
     setQuiz({ step: 1, budget: 3000, bedrooms: null, vibes: [], commute: null });
     setNeighborhoods([]); setListings({});
-    router.push('/find-your-neighborhood');
+    router.push('/tools/find-your-neighborhood');
   };
 
   return (

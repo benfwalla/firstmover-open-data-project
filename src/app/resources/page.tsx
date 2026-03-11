@@ -29,13 +29,13 @@ const resources: Resource[] = [
   {
     title: 'Find Your Neighborhood',
     description: 'A short quiz that matches you to NYC neighborhoods based on your budget, lifestyle, and commute.',
-    href: '/find-your-neighborhood',
+    href: '/tools/find-your-neighborhood',
     category: 'tools',
   },
   {
     title: 'Guess the Rent Game',
     description: 'We show you real listings, you guess the monthly rent.',
-    href: '/games/guess-the-rent',
+    href: '/tools/guess-the-rent',
     category: 'tools',
   },
   {

@@ -4,9 +4,12 @@ import { notFound } from 'next/navigation';
 
 export async function generateMetadata() {
   const page = getPage('about');
+  const title = page ? `${page.frontmatter.title} · FirstMover Open Data Project` : 'About · FirstMover Open Data Project';
   return {
-    title: page ? `${page.frontmatter.title} | FirstMover Open Data Project` : 'About',
-    description: page?.frontmatter.description,
+    title,
+    description: 'Learn about the FirstMover Open Data Project — our mission to democratize NYC rental data for renters, journalists, and analysts.',
+    alternates: { canonical: '/about' },
+    openGraph: { url: '/about' },
   };
 }
 

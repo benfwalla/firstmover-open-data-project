@@ -1,30 +1,25 @@
 import { FindYourNeighborhoodQuiz } from '@/components/FindYourNeighborhoodQuiz';
 import { Suspense } from 'react';
 
-export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
-  const budget = searchParams.budget;
-  const vibes = searchParams.vibes;
-  
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
+  const params = await searchParams;
+  const budget = params.budget;
+  const vibes = params.vibes;
+
   if (budget || vibes) {
     return {
-      title: 'My NYC Neighborhood Results | FirstMover',
+      title: 'My NYC Neighborhood Results · FirstMover Open Data Project',
       description: `I found my perfect NYC neighborhoods with a $${budget} budget. See which neighborhoods match your lifestyle and commute.`,
-      openGraph: {
-        title: 'My NYC Neighborhood Results',
-        description: `Perfect neighborhoods for a $${budget} budget`,
-        type: 'article',
-      },
+      alternates: { canonical: '/tools/find-your-neighborhood' },
+      openGraph: { url: '/tools/find-your-neighborhood', type: 'article' },
     };
   }
 
   return {
-    title: 'Find Your NYC Neighborhood | FirstMover',
+    title: 'Find Your NYC Neighborhood · FirstMover Open Data Project',
     description: 'Answer 3 questions to find your perfect NYC neighborhood based on budget, lifestyle, and commute.',
-    openGraph: {
-      title: 'Find Your NYC Neighborhood',
-      description: 'Discover which NYC neighborhoods fit your budget and lifestyle',
-      type: 'website',
-    },
+    alternates: { canonical: '/tools/find-your-neighborhood' },
+    openGraph: { url: '/tools/find-your-neighborhood' },
   };
 }
 

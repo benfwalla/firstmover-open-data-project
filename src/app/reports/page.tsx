@@ -1,9 +1,13 @@
 import Link from 'next/link';
 import { getPostsByType } from '@/lib/content';
 
-export const metadata = {
-  title: 'Reports | FirstMover Open Data Project',
-  description: 'Monthly NYC rent reports with neighborhood-level analysis.',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Reports · FirstMover Open Data Project',
+  description: 'Monthly NYC rent reports with real data. See average rents, price trends, and neighborhood breakdowns across Manhattan, Brooklyn, Queens, and more.',
+  alternates: { canonical: '/reports' },
+  openGraph: { url: '/reports' },
 };
 
 export default function ReportsPage() {

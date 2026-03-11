@@ -27,6 +27,9 @@ export function FixedNavbar() {
             <Link href="/reports" className="nav-link">
               Reports
             </Link>
+            <Link href="/blog" className="nav-link">
+              Blog
+            </Link>
             <Link href="/resources" className="nav-link">
               Resources
             </Link>
@@ -62,6 +65,9 @@ export function FixedNavbar() {
           </Link>
           <Link href="/reports" className="nav-mobile-link" onClick={() => setIsMenuOpen(false)}>
             Reports
+          </Link>
+          <Link href="/blog" className="nav-mobile-link" onClick={() => setIsMenuOpen(false)}>
+            Blog
           </Link>
           <Link href="/resources" className="nav-mobile-link" onClick={() => setIsMenuOpen(false)}>
             Resources

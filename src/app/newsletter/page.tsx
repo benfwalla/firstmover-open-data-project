@@ -1,8 +1,11 @@
+import type { Metadata } from 'next';
 import NewsletterForm from './NewsletterForm';
 
-export const metadata = {
-  title: 'Newsletter | FirstMover Open Data Project',
-  description: 'Monthly report updates and the latest NYC housing trends.',
+export const metadata: Metadata = {
+  title: 'Newsletter · FirstMover Open Data Project',
+  description: 'Get monthly NYC rental market insights delivered to your inbox. Data-driven reports on rent prices, trends, and neighborhood analysis.',
+  alternates: { canonical: '/newsletter' },
+  openGraph: { url: '/newsletter' },
 };
 
 export default function NewsletterPage() {

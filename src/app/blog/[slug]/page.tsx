@@ -33,13 +33,10 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   }
 
   return {
-    title: `${post.frontmatter.title} | FirstMover Data`,
+    title: `${post.frontmatter.title} · FirstMover Open Data Project`,
     description: post.frontmatter.description,
-    openGraph: {
-      title: post.frontmatter.title,
-      description: post.frontmatter.description,
-      type: 'article',
-    },
+    alternates: { canonical: `/blog/${resolvedParams.slug}` },
+    openGraph: { url: `/blog/${resolvedParams.slug}`, type: 'article' },
   };
 }
 
@@ -60,8 +57,34 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     NeighborhoodMap,
   });
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.frontmatter.title,
+    description: post.frontmatter.description,
+    datePublished: post.frontmatter.date,
+    author: {
+      '@type': 'Organization',
+      name: 'FirstMover',
+      url: 'https://firstmovernyc.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'FirstMover',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://data.firstmovernyc.com/logo.svg',
+      },
+    },
+    mainEntityOfPage: `https://data.firstmovernyc.com/blog/${resolvedParams.slug}`,
+  };
+
   return (
     <div className="publication-section narrow">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <div className="container">
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>

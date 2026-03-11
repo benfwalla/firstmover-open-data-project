@@ -27,13 +27,10 @@ export async function generateMetadata({ params }: ReportPageProps) {
   if (!post) return { title: 'Report Not Found' };
 
   return {
-    title: `${post.frontmatter.title} | FirstMover Open Data Project`,
+    title: `${post.frontmatter.title} · FirstMover Open Data Project`,
     description: post.frontmatter.description,
-    openGraph: {
-      title: post.frontmatter.title,
-      description: post.frontmatter.description,
-      type: 'article',
-    },
+    alternates: { canonical: `/reports/${slug}` },
+    openGraph: { url: `/reports/${slug}`, type: 'article' },
   };
 }
 

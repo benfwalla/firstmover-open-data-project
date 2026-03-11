@@ -1,9 +1,13 @@
 import DownloadLink from '@/components/DownloadLink';
 import DownloadAllButton from '@/components/DownloadAllButton';
 
-export const metadata = {
-  title: 'Open Data | FirstMover Open Data Project',
-  description: 'Free NYC rental listing data. Monthly CSVs and rent stabilized building records.',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Open Data · FirstMover Open Data Project',
+  description: 'Download free monthly NYC rental listing data as CSVs. Every StreetEasy listing tracked — prices, neighborhoods, and more. Updated monthly.',
+  alternates: { canonical: '/open-data' },
+  openGraph: { url: '/open-data' },
 };
 
 const DATA_BASE = 'https://raw.githubusercontent.com/benfwalla/firstmover-open-data-project/main/public/data';

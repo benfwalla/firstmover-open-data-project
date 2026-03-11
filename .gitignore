@@ -35,3 +35,8 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .vercel
 .next
 .vercel
+
+# agents
+.claude
+.agents
+skills-lock.json

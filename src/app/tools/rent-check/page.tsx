@@ -43,14 +43,6 @@ export default function RentCheckTool() {
 
   return (
     <>
-      <div className="fixed-navbar rc-nav">
-        <div className="nav-container container">
-          <Link href="/" className="nav-logo-link">
-            <img src="/logo.svg" alt="FirstMover" className="nav-logo" />
-          </Link>
-        </div>
-      </div>
-
       <div className="publication-section narrow">
         <div className="section-header text-center mb-48">
           <h1 className="section-title font-40">Is My Rent Fair?</h1>
@@ -137,7 +129,7 @@ export default function RentCheckTool() {
         <div className="cta-section">
           <p className="cta-text">Looking for a better deal?</p>
           <a href="https://apps.apple.com/us/app/firstmover/id6740444528" target="_blank" rel="noopener noreferrer" className="cta-button-primary">Get FirstMover alerts</a>
-          <Link href="/find-your-neighborhood" className="cta-button-secondary">Find Your Neighborhood</Link>
+          <Link href="/tools/find-your-neighborhood" className="cta-button-secondary">Find Your Neighborhood</Link>
         </div>
       </div>
     </>
