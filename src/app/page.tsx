@@ -35,7 +35,7 @@ export default function HomePage() {
               Monthly listing CSVs and a rent stabilized buildings database.
             </p>
             <div className="tool-card-preview-wrapper">
-              <img src="/images/open_data_listings_preview.svg" alt="Open Data preview" className="tool-card-preview" />
+              <img src="/open/images/open_data_listings_preview.svg" alt="Open Data preview" className="tool-card-preview" />
             </div>
           </Link>
 
@@ -46,7 +46,7 @@ export default function HomePage() {
               Monthly rent reports breaking down what's happening across NYC.
             </p>
             <div className="tool-card-preview-wrapper">
-              <img src="/images/reports_preview.png" alt="Reports preview" className="tool-card-preview" />
+              <img src="/open/images/reports_preview.png" alt="Reports preview" className="tool-card-preview" />
             </div>
           </Link>
 
@@ -57,7 +57,7 @@ export default function HomePage() {
               Interactive tools and sites to explore NYC's rental market.
             </p>
             <div className="tool-card-preview-wrapper">
-              <img src="/images/resource_preview.svg" alt="Resources preview" className="tool-card-preview" />
+              <img src="/open/images/resource_preview.svg" alt="Resources preview" className="tool-card-preview" />
             </div>
           </Link>
         </div>

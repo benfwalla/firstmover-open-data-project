@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://data.firstmovernyc.com'),
+  metadataBase: new URL('https://www.firstmovernyc.com/open'),
   title: "FirstMover Open Data Project · NYC Rental Market Data",
   description:
     "Free NYC rental market data, monthly rent reports, and tools for apartment hunters. Powered by real-time StreetEasy listing data from FirstMover.",
@@ -44,14 +44,14 @@ const jsonLd = [
     '@type': 'Organization',
     name: 'FirstMover',
     url: 'https://firstmovernyc.com',
-    logo: 'https://data.firstmovernyc.com/logo.svg',
+    logo: 'https://www.firstmovernyc.com/open/logo.svg',
     sameAs: ['https://github.com/benfwalla/firstmover-open-data-project'],
   },
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'FirstMover Open Data Project',
-    url: 'https://data.firstmovernyc.com',
+    url: 'https://www.firstmovernyc.com/open',
   },
 ];
 

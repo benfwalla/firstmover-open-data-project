@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { getPostsByType } from '@/lib/content';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://data.firstmovernyc.com';
+  const baseUrl = 'https://www.firstmovernyc.com/open';
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date() },

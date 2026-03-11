@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://data.firstmovernyc.com/sitemap.xml',
+    sitemap: 'https://www.firstmovernyc.com/open/sitemap.xml',
   };
 }
