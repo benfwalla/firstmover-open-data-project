@@ -89,8 +89,7 @@ a:hover {
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   color: #888;
   margin-bottom: 8px;
 }
@@ -150,8 +149,7 @@ a:hover {
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
   color: #888;
   text-align: left;
   padding: 12px 16px;
@@ -235,6 +233,12 @@ a:hover {
 .listing-address {
   font-size: 15px;
   color: #555;
+  margin-top: 4px;
+}
+
+.listing-ago {
+  font-size: 13px;
+  color: #999;
   margin-top: 4px;
 }
 
@@ -392,8 +396,7 @@ a:hover {
   border-bottom: 2px solid var(--light-gray);
   font-weight: 600;
   font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: #888;
 }
 
@@ -449,8 +452,7 @@ a:hover {
   font-size: 14px;
   color: #666;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 
 .report-narrative {
@@ -482,8 +484,7 @@ a:hover {
   border-bottom: 2px solid var(--light-gray);
   font-weight: 600;
   font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: #888;
 }
 
@@ -587,8 +588,7 @@ a:hover {
   color: #666;
   text-align: center;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 
 .quiz-step {
@@ -1066,7 +1066,7 @@ a:hover {
 
 @media (max-width: 810px) {
   .home-hero {
-    padding: 24px 0 48px;
+    padding: 12px 0 48px;
   }
 
   .home-grid {
@@ -1076,6 +1076,7 @@ a:hover {
 
   .home-intro {
     padding-right: 0;
+    padding-top: 0;
   }
 
   .home-intro .publication-title {
@@ -1392,7 +1393,7 @@ a:hover {
 .quiz-subway-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
 .quiz-subway-icon { display: inline-flex; align-items: center; justify-content: center; color: white; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: bold; line-height: 1; }
 .quiz-commute-text { font-size: 13px; color: #666; }
-.quiz-example-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #aaa; }
+.quiz-example-label { font-size: 11px; font-weight: 600; letter-spacing: 0.02em; color: #aaa; }
 .quiz-listings-section { margin-top: 14px; }
 .quiz-listings-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 .quiz-refresh-btn { background: none; border: 1px solid #ddd; border-radius: 6px; padding: 4px 10px; font-size: 12px; cursor: pointer; color: #888; transition: all 0.2s; display: inline-flex; align-items: center; gap: 4px; }
@@ -1463,7 +1464,7 @@ a:hover {
 .gtr-reveal { margin-top: 8px; }
 .gtr-reveal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
 .gtr-reveal-col { text-align: center; }
-.gtr-reveal-label { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 4px; }
+.gtr-reveal-label { display: block; font-size: 13px; letter-spacing: 0.02em; color: #888; margin-bottom: 4px; }
 .gtr-reveal-value { font-family: var(--font-heading); font-size: 28px; font-weight: 700; }
 .gtr-reveal-actual { color: var(--green); }
 .gtr-reveal-diff { text-align: center; font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 20px; }
@@ -1478,7 +1479,7 @@ a:hover {
 .gtr-score-stat { text-align: center; padding: 20px 8px; }
 .gtr-score-stat + .gtr-score-stat { border-left: 1px solid var(--light-gray); }
 .gtr-score-number { display: block; font-family: var(--font-heading); font-size: 24px; font-weight: 700; }
-.gtr-score-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #888; }
+.gtr-score-label { font-size: 12px; letter-spacing: 0.02em; color: #888; }
 
 .gtr-results-list { padding: 8px 0; }
 .gtr-result-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; border-bottom: 1px solid var(--light-gray); }
@@ -1488,7 +1489,7 @@ a:hover {
 .gtr-result-info strong { display: block; font-size: 15px; }
 .gtr-result-beds { display: block; font-size: 13px; color: #888; }
 .gtr-result-prices { display: flex; align-items: center; gap: 16px; text-align: right; }
-.gtr-result-price-label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #999; }
+.gtr-result-price-label { display: block; font-size: 11px; letter-spacing: 0.02em; color: #999; }
 .gtr-result-price { font-family: var(--font-heading); font-size: 15px; font-weight: 600; }
 .gtr-result-pct { font-family: var(--font-heading); font-weight: 700; font-size: 14px; min-width: 56px; text-align: right; }
 
@@ -1575,7 +1576,7 @@ a:hover {
 
 /* Intro screen */
 .gtr-intro-card { background: white; border-radius: var(--radius); border: 1px solid var(--light-gray); padding: 48px 20px 32px; text-align: center; }
-.gtr-intro-badge { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); background: rgba(59,130,246,0.08); padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; }
+.gtr-intro-badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; color: var(--blue); background: rgba(59,130,246,0.08); padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; }
 .gtr-intro-title { font-family: var(--font-heading); font-size: 40px; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 8px; }
 .gtr-intro-subtitle { font-size: 17px; color: #666; line-height: 1.5; margin-bottom: 32px; }
 .gtr-intro-rules { display: flex; flex-direction: column; gap: 14px; text-align: left; margin-bottom: 32px; padding: 0 8px; }
@@ -1646,3 +1647,352 @@ a:hover {
 }
 
 /* Open Data cards */
+
+/* ==========================================
+   NEIGHBORHOOD PAGES
+   ========================================== */
+
+.neighborhood-breadcrumb {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 24px;
+}
+
+.neighborhood-breadcrumb a {
+  color: #888;
+  text-decoration: none;
+}
+
+.neighborhood-breadcrumb a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.neighborhood-breadcrumb .separator {
+  margin: 0 8px;
+  color: #ccc;
+}
+
+.neighborhood-header {
+  margin-bottom: 40px;
+}
+
+.subway-pills {
+  display: inline-flex;
+  gap: 4px;
+  vertical-align: middle;
+}
+
+.subway-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #888;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.neighborhood-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.neighborhood-section {
+  margin-bottom: 48px;
+}
+
+.neighborhood-section-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.neighborhood-section-desc {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* Listing cards */
+.listing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.listing-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--light-gray);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease;
+}
+
+.listing-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+}
+
+.listing-photo-wrapper {
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  background: var(--light-gray);
+}
+
+.listing-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.listing-info {
+  padding: 10px 12px;
+}
+
+.listing-price {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.listing-details {
+  font-size: 13px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.listing-address {
+  font-size: 12px;
+  color: #999;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Commute grid */
+.commute-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.commute-card {
+  background: white;
+  border: 1px solid var(--light-gray);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.commute-minutes {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--text);
+}
+
+.commute-dest {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Subway lines large */
+.subway-lines-large {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.subway-pill-large {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #888;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* CTA section */
+.neighborhood-cta {
+  background: white;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.neighborhood-cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Nearby neighborhoods */
+.nearby-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.nearby-card {
+  background: white;
+  border: 1px solid var(--light-gray);
+  border-radius: 12px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.nearby-card:hover {
+  border-color: var(--blue);
+  text-decoration: none;
+}
+
+.nearby-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.nearby-borough {
+  font-size: 13px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Neighborhoods index grid */
+.neighborhoods-index-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 1px;
+}
+
+.neighborhoods-index-card {
+  background: white;
+  border: 1px solid var(--light-gray);
+  border-radius: 12px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.neighborhoods-index-card:hover {
+  border-color: var(--blue);
+  text-decoration: none;
+}
+
+.neighborhoods-index-card .name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.neighborhoods-index-card .borough {
+  font-size: 13px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.neighborhoods-index-card .subway {
+  display: flex;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.neighborhoods-index-card .median-rent {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+.neighborhoods-index-card .median-rent.no-data {
+  font-weight: 400;
+  font-family: var(--font-body);
+  color: #bbb;
+  font-size: 13px;
+}
+
+/* Subtle FirstMover attribution */
+.fm-attribution {
+  font-size: 13px;
+  color: #999;
+  margin-top: 8px;
+}
+
+.fm-attribution a {
+  color: #999;
+  text-decoration: none;
+}
+
+.fm-attribution a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .neighborhood-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .listing-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .nearby-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .commute-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .neighborhood-cta {
+    padding: 32px 20px;
+  }
+
+  .neighborhood-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .listing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nearby-grid {
+    grid-template-columns: 1fr;
+  }
+}

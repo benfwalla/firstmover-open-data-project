@@ -1,13 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 type Category = 'all' | 'tools' | 'search' | 'research' | 'guides';
 
 function getFaviconUrl(href: string, external?: boolean): string {
-  if (!external) return '/favicon.png';
+  if (!external) return '/open/favicon.png';
   try {
     const domain = new URL(href).hostname;
     return `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
@@ -48,7 +47,7 @@ const resources: Resource[] = [
   // Apartment Search
   {
     title: 'FirstMover',
-    description: 'Instant push notifications when new StreetEasy listings match your search.',
+    description: 'Instant push notifications when new NYC rental listings match your search.',
     href: 'https://apps.apple.com/us/app/firstmover/id6740444528',
     external: true,
     category: 'search',
@@ -62,7 +61,7 @@ const resources: Resource[] = [
   },
   {
     title: 'Realer Estate',
-    description: 'Analyzes StreetEasy listings to find undervalued apartments using comps. Scores deals on a grading scale.',
+    description: 'Analyzes NYC rental listings to find undervalued apartments using comps. Scores deals on a grading scale.',
     href: 'https://realerestate.org',
     external: true,
     category: 'search',
@@ -162,13 +161,13 @@ export default function ResourcesPage() {
           const inner = (
             <>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={favicon}
                   alt=""
                   width={20}
                   height={20}
                   style={{ borderRadius: '4px', flexShrink: 0 }}
-                  unoptimized
                 />
                 <h3 className="tool-title" style={{ margin: 0 }}>
                   {r.title}

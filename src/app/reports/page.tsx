@@ -14,16 +14,11 @@ export default function ReportsPage() {
   const reports = getPostsByType('report');
   return (
     <div className="publication-section narrow">
-      <div className="section-header" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-        <div>
-          <h1 className="section-title" style={{ fontSize: '40px' }}>Reports</h1>
-          <p className="section-subtitle">
-            Monthly rent reports breaking down what&apos;s happening across NYC.
-          </p>
-        </div>
-        <Link href="/newsletter" className="cta-button" style={{ fontSize: '13px', padding: '6px 16px', background: 'var(--text)', whiteSpace: 'nowrap' }}>
-          Subscribe
-        </Link>
+      <div className="section-header">
+        <h1 className="section-title" style={{ fontSize: '40px' }}>Reports</h1>
+        <p className="section-subtitle">
+          Monthly rent reports breaking down what&apos;s happening across NYC.
+        </p>
       </div>
 
       <div className="blog-posts-list">
@@ -42,6 +37,10 @@ export default function ReportsPage() {
           </Link>
         ))}
       </div>
+
+      <p className="fm-attribution" style={{ marginTop: '48px', textAlign: 'center' }}>
+        A <a href="https://firstmovernyc.com" target="_blank" rel="noopener noreferrer">FirstMover</a> project
+      </p>
     </div>
   );
 }

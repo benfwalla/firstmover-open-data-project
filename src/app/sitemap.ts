@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getPostsByType } from '@/lib/content';
+import { getAllNeighborhoodSlugs } from '@/lib/neighborhoods';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.firstmovernyc.com/open';
@@ -12,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/newsletter`, lastModified: new Date() },
     { url: `${baseUrl}/about`, lastModified: new Date() },
     { url: `${baseUrl}/blog`, lastModified: new Date() },
+    { url: `${baseUrl}/neighborhoods`, lastModified: new Date() },
     { url: `${baseUrl}/tools/find-your-neighborhood`, lastModified: new Date() },
     { url: `${baseUrl}/tools/guess-the-rent`, lastModified: new Date() },
     { url: `${baseUrl}/tools/rent-check`, lastModified: new Date() },
@@ -27,5 +29,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.frontmatter.date),
   }));
 
-  return [...staticPages, ...blogPosts, ...reports];
+  const neighborhoods = getAllNeighborhoodSlugs().map((slug) => ({
+    url: `${baseUrl}/neighborhoods/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+  }));
+
+  return [...staticPages, ...blogPosts, ...reports, ...neighborhoods];
 }

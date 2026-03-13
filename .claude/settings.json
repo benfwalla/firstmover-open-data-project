@@ -16,7 +16,8 @@
       "Bash(git diff -- src/app/page.tsx src/app/layout.tsx src/app/globals.css src/app/about/page.tsx src/lib/mdx.tsx src/lib/content.ts src/app/open-data/page.tsx src/components/FixedNavbar.tsx src/app/blog/[slug]/page.tsx src/app/reports/[slug]/page.tsx)",
       "Bash(grep -n \"generateMetadata\\\\|title:\\\\|description:\" /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/page.tsx /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/open-data/page.tsx /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/blog/[slug]/page.tsx /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/reports/[slug]/page.tsx)",
       "Bash(wc -l /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/components/*.tsx)",
-      "Bash(grep -n \"section-header\\\\|section-title\\\\|section-subtitle\" /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/open-data/page.tsx /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/about/page.tsx /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/blog/[slug]/page.tsx /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/reports/[slug]/page.tsx)"
+      "Bash(grep -n \"section-header\\\\|section-title\\\\|section-subtitle\" /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/open-data/page.tsx /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/about/page.tsx /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/blog/[slug]/page.tsx /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src/app/reports/[slug]/page.tsx)",
+      "Bash(grep -r \"supabase\\\\|getPool\\\\|database\" /Users/benwallace/Documents/firstmover/firstmover-open-data-project/src --include=*.ts --include=*.tsx)"
     ]
   }
 }

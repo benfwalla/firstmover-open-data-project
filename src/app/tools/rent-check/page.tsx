@@ -126,11 +126,9 @@ export default function RentCheckTool() {
           </div>
         )}
 
-        <div className="cta-section">
-          <p className="cta-text">Looking for a better deal?</p>
-          <a href="https://apps.apple.com/us/app/firstmover/id6740444528" target="_blank" rel="noopener noreferrer" className="cta-button-primary">Get FirstMover alerts</a>
-          <Link href="/tools/find-your-neighborhood" className="cta-button-secondary">Find Your Neighborhood</Link>
-        </div>
+        <p className="fm-attribution" style={{ marginTop: '32px', textAlign: 'center' }}>
+          Looking for a better deal? Try <Link href="/tools/find-your-neighborhood">Find Your Neighborhood</Link> · <a href="https://firstmovernyc.com" target="_blank" rel="noopener noreferrer">FirstMover</a>
+        </p>
       </div>
     </>
   );

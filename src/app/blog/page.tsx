@@ -4,7 +4,7 @@ import { getPostsByType } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'NYC Rent Blog · FirstMover Open Data Project',
-  description: 'Data-driven insights on NYC\'s rental market. Neighborhood deep dives, rent trends, and guides powered by real StreetEasy listing data.',
+  description: 'Data-driven insights on NYC\'s rental market. Neighborhood deep dives, rent trends, and guides powered by real listing data.',
   alternates: { canonical: '/blog' },
   openGraph: { url: '/blog' },
 };
@@ -14,16 +14,11 @@ export default function BlogIndexPage() {
 
   return (
     <div className="publication-section narrow">
-      <div className="section-header" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-        <div>
-          <h1 className="section-title" style={{ fontSize: '40px' }}>Blog</h1>
-          <p className="section-subtitle">
-            Data-driven insights on NYC&apos;s rental market.
-          </p>
-        </div>
-        <Link href="/newsletter" className="cta-button" style={{ fontSize: '13px', padding: '6px 16px', background: 'var(--text)', whiteSpace: 'nowrap' }}>
-          Subscribe
-        </Link>
+      <div className="section-header">
+        <h1 className="section-title" style={{ fontSize: '40px' }}>Blog</h1>
+        <p className="section-subtitle">
+          Data-driven insights on NYC&apos;s rental market.
+        </p>
       </div>
 
       <div className="blog-posts-list">
@@ -44,6 +39,10 @@ export default function BlogIndexPage() {
           </Link>
         ))}
       </div>
+
+      <p className="fm-attribution" style={{ marginTop: '48px', textAlign: 'center' }}>
+        A <a href="https://firstmovernyc.com" target="_blank" rel="noopener noreferrer">FirstMover</a> project
+      </p>
     </div>
   );
 }

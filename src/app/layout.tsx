@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.firstmovernyc.com/open'),
   title: "FirstMover Open Data Project · NYC Rental Market Data",
   description:
-    "Free NYC rental market data, monthly rent reports, and tools for apartment hunters. Powered by real-time StreetEasy listing data from FirstMover.",
+    "Free NYC rental market data, monthly rent reports, and tools for apartment hunters. Powered by real listing data from FirstMover.",
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },

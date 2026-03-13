@@ -17,7 +17,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 
   return {
     title: 'Find Your NYC Neighborhood · FirstMover Open Data Project',
-    description: 'Answer 3 questions to find your perfect NYC neighborhood based on budget, lifestyle, and commute.',
+    description: 'Answer 3 quick questions and we\'ll match you to NYC neighborhoods that fit your budget, lifestyle, and commute. Powered by real NYC rent data.',
     alternates: { canonical: '/tools/find-your-neighborhood' },
     openGraph: { url: '/tools/find-your-neighborhood' },
   };

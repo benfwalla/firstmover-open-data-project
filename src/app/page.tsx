@@ -3,8 +3,8 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free NYC Rental Market Data & Reports · FirstMover Open Data Project',
-  description: 'Free NYC rental listing data, monthly rent reports, and interactive tools for apartment hunters. Powered by real StreetEasy listing data, updated every month.',
+  title: 'NYC Rental Market Data & Reports · FirstMover',
+  description: 'Free NYC rental listing data, monthly rent reports, and interactive tools for apartment hunters. Powered by the latest data from FirstMover.',
   alternates: { canonical: '/' },
   openGraph: { url: '/', type: 'website' },
 };
@@ -19,7 +19,7 @@ export default function HomePage() {
             <h1 className="publication-title">The FirstMover Open Data Project</h1>
             <p className="home-description">
               Democratizing NYC rental data and resources for renters and analysts.
-              Free listing data, tools, and guides updated every month.
+              Free listing data, tools, and guides powered by the latest data.
             </p>
             <div className="home-links">
               <Link href="/about" className="home-about-link">About</Link>
@@ -59,6 +59,14 @@ export default function HomePage() {
             <div className="tool-card-preview-wrapper">
               <img src="/open/images/resource_preview.svg" alt="Resources preview" className="tool-card-preview" />
             </div>
+          </Link>
+
+          {/* Neighborhoods */}
+          <Link href="/neighborhoods" className="tool-card" style={{ gridColumn: '1 / -1' }}>
+            <h3 className="tool-title">Neighborhoods</h3>
+            <p className="tool-description">
+              Rent prices, subway access, and commute times for 170+ NYC neighborhoods.
+            </p>
           </Link>
         </div>
       </div>

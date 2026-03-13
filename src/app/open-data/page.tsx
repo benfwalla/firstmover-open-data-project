@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Open Data · FirstMover Open Data Project',
-  description: 'Download free monthly NYC rental listing data as CSVs. Every StreetEasy listing tracked — prices, neighborhoods, and more. Updated monthly.',
+  description: 'Download free monthly NYC rental listing data as CSVs. Every listing tracked — prices, neighborhoods, and more. Updated monthly.',
   alternates: { canonical: '/open-data' },
   openGraph: { url: '/open-data' },
 };
@@ -76,7 +76,7 @@ const datasetJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
   name: 'NYC Rental Listing Data',
-  description: 'Monthly dataset of every StreetEasy rental listing in New York City. 34 columns including price, neighborhood, bedrooms, square footage, and more. Updated monthly.',
+  description: 'Monthly dataset of every NYC rental listing. 34 columns including price, neighborhood, bedrooms, square footage, and more. Updated monthly.',
   url: 'https://www.firstmovernyc.com/open/open-data',
   license: 'https://creativecommons.org/publicdomain/zero/1.0/',
   creator: {

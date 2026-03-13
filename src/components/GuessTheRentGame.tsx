@@ -273,21 +273,9 @@ export function GuessTheRentGame() {
             </button>
           </div>
 
-          <div className="gtr-cta-card">
-            <div className="gtr-cta-icon">⚡</div>
-            <h3 className="gtr-cta-title">Stop guessing. Start moving.</h3>
-            <p className="gtr-cta-desc">
-              FirstMover sends you push notifications when new NYC rentals hit the market.
-            </p>
-            <a
-              href="https://apps.apple.com/us/app/firstmover/id6740444528"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="gtr-btn-cta"
-            >
-              Get FirstMover
-            </a>
-          </div>
+          <p className="fm-attribution" style={{ marginTop: '24px', textAlign: 'center' }}>
+            Get alerts when new listings drop · <a href="https://firstmovernyc.com" target="_blank" rel="noopener noreferrer">FirstMover</a>
+          </p>
         </div>
       </div>
     );

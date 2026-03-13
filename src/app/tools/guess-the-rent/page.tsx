@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Guess the Rent · FirstMover Open Data Project',
-  description: 'Think you know NYC rent prices? Guess the monthly rent on real listings and see how you stack up.',
+  description: 'Think you know NYC rent prices? Guess the monthly rent on real listings and see how your instincts stack up. Play 5 rounds with actual NYC apartments.',
   alternates: { canonical: '/tools/guess-the-rent' },
   openGraph: { url: '/tools/guess-the-rent' },
 };
