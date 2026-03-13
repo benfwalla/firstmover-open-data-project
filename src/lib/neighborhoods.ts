@@ -20,21 +20,10 @@ export function slugify(name: string): string {
 }
 
 export function unslugify(slug: string): string | null {
-  const map = getSlugMap();
-  return map.get(slug) ?? null;
+  return slugMap.get(slug) ?? null;
 }
 
-let _slugMap: Map<string, string> | null = null;
-
-function getSlugMap(): Map<string, string> {
-  if (!_slugMap) {
-    _slugMap = new Map();
-    for (const name of Object.keys(coords)) {
-      _slugMap.set(slugify(name), name);
-    }
-  }
-  return _slugMap;
-}
+const slugMap = new Map(Object.keys(coords).map((name) => [slugify(name), name]));
 
 export function getAllNeighborhoodSlugs(): string[] {
   return Object.keys(coords).map(slugify);
@@ -42,6 +31,10 @@ export function getAllNeighborhoodSlugs(): string[] {
 
 export function getAllNeighborhoods(): string[] {
   return Object.keys(coords);
+}
+
+export function getAllNeighborhoodCoords(): Record<string, { lat: number; lng: number }> {
+  return coords;
 }
 
 export interface NeighborhoodStaticData {

@@ -7,12 +7,14 @@ import {
   getNeighborhoodStaticData,
   COMMUTE_LABELS,
   getAllNeighborhoods,
+  getAllNeighborhoodCoords,
   slugify,
   getSubwayColor,
   getSubwayTextColor,
   getNeighborhoodAreaIds,
 } from '@/lib/neighborhoods';
 import { getNeighborhoodRentData } from '@/lib/neighborhood-data';
+import { formatPrice } from '@/lib/utils';
 
 export async function generateStaticParams() {
   return getAllNeighborhoodSlugs().map((slug) => ({ slug }));
@@ -39,10 +41,6 @@ export async function generateMetadata({
     alternates: { canonical: `/neighborhoods/${slug}` },
     openGraph: { url: `/neighborhoods/${slug}`, title, description },
   };
-}
-
-function formatPrice(n: number): string {
-  return `$${n.toLocaleString()}`;
 }
 
 function timeAgo(dateStr: string): string {
@@ -88,21 +86,17 @@ export default async function NeighborhoodPage({
   const hasData = rentData && rentData.total_listings > 0;
   const areaIds = getNeighborhoodAreaIds(name);
 
-  // Pick 6 nearby neighborhoods (same borough, different name)
-  const allNeighborhoods = getAllNeighborhoods();
-  const nearby = allNeighborhoods
-    .filter((n) => n !== name)
-    .map((n) => {
-      const d = getNeighborhoodStaticData(n);
-      if (!d) return null;
-      const dist = Math.sqrt(
-        Math.pow(d.lat - staticData.lat, 2) + Math.pow(d.lng - staticData.lng, 2)
-      );
-      return { ...d, dist };
-    })
-    .filter(Boolean)
-    .sort((a, b) => a!.dist - b!.dist)
-    .slice(0, 6) as (NonNullable<ReturnType<typeof getNeighborhoodStaticData>> & { dist: number })[];
+  // Pick 6 nearby neighborhoods using lightweight coords lookup
+  const allCoords = getAllNeighborhoodCoords();
+  const nearbyNames = Object.entries(allCoords)
+    .filter(([n]) => n !== name)
+    .map(([n, c]) => ({
+      name: n,
+      dist: Math.pow(c.lat - staticData.lat, 2) + Math.pow(c.lng - staticData.lng, 2),
+    }))
+    .sort((a, b) => a.dist - b.dist)
+    .slice(0, 6);
+  const nearby = nearbyNames.map((n) => getNeighborhoodStaticData(n.name)!).filter(Boolean);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -228,7 +222,7 @@ export default async function NeighborhoodPage({
                     {areaIds && (
                       <td style={{ textAlign: 'right' }}>
                         <a
-                          href={`https://streeteasy.com/for-rent/nyc/area:${areaIds}${r.bedroom_count >= 0 ? `%7Cbeds:${r.bedroom_count}` : ''}?sort_by=listing_desc`}
+                          href={`https://streeteasy.com/for-rent/nyc/area:${areaIds}%7Cbeds:${r.bedroom_count}?sort_by=listing_desc`}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{ color: '#666', fontSize: '13px', textDecoration: 'none', whiteSpace: 'nowrap' }}

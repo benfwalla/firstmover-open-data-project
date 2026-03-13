@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { formatPrice } from '@/lib/utils';
 
 interface Neighborhood {
   name: string;
@@ -26,7 +27,6 @@ export default function RentCheckTool() {
     }
   }, [neighborhood, neighborhoods]);
 
-  const formatPrice = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
   const getBedroomKey = (b: number) => b === 0 ? 'studio' : `${b}br`;
 
   const getComparison = () => {
