@@ -95,7 +95,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
     author: {
       '@type': 'Organization',
       name: 'FirstMover',
-      url: 'https://firstmovernyc.com',
+      url: 'https://www.firstmovernyc.com',
     },
     publisher: {
       '@type': 'Organization',

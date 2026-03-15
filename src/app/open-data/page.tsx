@@ -82,7 +82,7 @@ const datasetJsonLd = {
   creator: {
     '@type': 'Organization',
     name: 'FirstMover',
-    url: 'https://firstmovernyc.com',
+    url: 'https://www.firstmovernyc.com',
   },
   temporalCoverage: '2025-02/..',
   spatialCoverage: {

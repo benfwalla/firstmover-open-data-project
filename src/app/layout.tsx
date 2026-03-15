@@ -43,7 +43,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'FirstMover',
-    url: 'https://firstmovernyc.com',
+    url: 'https://www.firstmovernyc.com',
     logo: 'https://www.firstmovernyc.com/logo.svg',
     sameAs: ['https://github.com/benfwalla/firstmover-open-data-project'],
   },

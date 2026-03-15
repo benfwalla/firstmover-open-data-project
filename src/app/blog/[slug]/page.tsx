@@ -68,7 +68,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     author: {
       '@type': 'Organization',
       name: 'FirstMover',
-      url: 'https://firstmovernyc.com',
+      url: 'https://www.firstmovernyc.com',
     },
     publisher: {
       '@type': 'Organization',
