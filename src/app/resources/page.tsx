@@ -6,7 +6,7 @@ import Link from 'next/link';
 type Category = 'all' | 'tools' | 'search' | 'research' | 'guides';
 
 function getFaviconUrl(href: string, external?: boolean): string {
-  if (!external) return '/open/favicon.png';
+  if (!external) return '/favicon.png';
   try {
     const domain = new URL(href).hostname;
     return `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;

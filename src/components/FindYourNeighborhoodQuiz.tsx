@@ -158,7 +158,7 @@ export function FindYourNeighborhoodQuiz() {
     if (quiz.bedrooms) params.set('beds', quiz.bedrooms.toString());
     if (quiz.vibes.length > 0) params.set('vibes', quiz.vibes.join(','));
     if (quiz.commute) params.set('commute', quiz.commute);
-    window.history.pushState({}, '', `/open/tools/find-your-neighborhood?${params.toString()}`);
+    window.history.pushState({}, '', `/tools/find-your-neighborhood?${params.toString()}`);
   };
 
   const loadResults = async () => {
@@ -166,7 +166,7 @@ export function FindYourNeighborhoodQuiz() {
     setLoading(true);
     try {
       const params = new URLSearchParams({ beds: quiz.bedrooms.toString(), budget: quiz.budget.toString() });
-      const neighData = await fetch(`/open/api/neighborhoods?${params}`).then(r => r.json());
+      const neighData = await fetch(`/api/neighborhoods?${params}`).then(r => r.json());
       const scored = scoreNeighborhoods(neighData).slice(0, 5);
       setNeighborhoods(scored);
       
@@ -217,7 +217,7 @@ export function FindYourNeighborhoodQuiz() {
     for (const name of names) {
       try {
         const lp = new URLSearchParams({ neighborhood: name, beds: quiz.bedrooms!.toString(), nearPrice: quiz.budget.toString(), limit: '3' });
-        const result = await fetch(`/open/api/listings?${lp}`).then(r => r.json());
+        const result = await fetch(`/api/listings?${lp}`).then(r => r.json());
         if (result.length > 0) results[name] = result;
       } catch { /* skip */ }
     }

@@ -77,7 +77,7 @@ const datasetJsonLd = {
   '@type': 'Dataset',
   name: 'NYC Rental Listing Data',
   description: 'Monthly dataset of every NYC rental listing. 34 columns including price, neighborhood, bedrooms, square footage, and more. Updated monthly.',
-  url: 'https://www.firstmovernyc.com/open/open-data',
+  url: 'https://www.firstmovernyc.com/open-data',
   license: 'https://creativecommons.org/publicdomain/zero/1.0/',
   creator: {
     '@type': 'Organization',

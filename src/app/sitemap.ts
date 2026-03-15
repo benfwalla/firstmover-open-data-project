@@ -3,10 +3,11 @@ import { getPostsByType } from '@/lib/content';
 import { getAllNeighborhoodSlugs } from '@/lib/neighborhoods';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.firstmovernyc.com/open';
+  const baseUrl = 'https://www.firstmovernyc.com';
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date() },
+    { url: `${baseUrl}/open`, lastModified: new Date() },
     { url: `${baseUrl}/open-data`, lastModified: new Date() },
     { url: `${baseUrl}/reports`, lastModified: new Date() },
     { url: `${baseUrl}/resources`, lastModified: new Date() },

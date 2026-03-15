@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start"
   },
@@ -22,6 +22,7 @@
     "@mdx-js/mdx": "^3.1.1",
     "@phosphor-icons/react": "^2.1.10",
     "@supabase/supabase-js": "^2.97.0",
+    "framer-motion": "^12.36.0",
     "gray-matter": "^4.0.3",
     "jszip": "^3.10.1",
     "mapbox-gl": "^3.18.1",

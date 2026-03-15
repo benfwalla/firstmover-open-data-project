@@ -134,7 +134,7 @@ export function GuessTheRentGame() {
       const encoded = btoa(JSON.stringify(
         results.map(r => ({ n: r.listing.area_name, b: r.listing.bedroom_count, ba: r.listing.full_bathroom_count, p: r.listing.price, g: r.guess }))
       ));
-      window.history.replaceState({}, '', `/open/tools/guess-the-rent?r=${encoded}`);
+      window.history.replaceState({}, '', `/tools/guess-the-rent?r=${encoded}`);
     } else {
       setCurrent(prev => prev + 1);
       setGuess('');
@@ -153,7 +153,7 @@ export function GuessTheRentGame() {
   };
 
   const playAgain = () => {
-    window.history.replaceState({}, '', '/open/tools/guess-the-rent');
+    window.history.replaceState({}, '', '/tools/guess-the-rent');
     fetchListings();
   };
 

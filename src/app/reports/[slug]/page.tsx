@@ -91,7 +91,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
     description: post.frontmatter.description,
     datePublished: post.frontmatter.date,
     dateModified: post.frontmatter.date,
-    image: 'https://www.firstmovernyc.com/open/og-image.png',
+    image: 'https://www.firstmovernyc.com/og-image.png',
     author: {
       '@type': 'Organization',
       name: 'FirstMover',
@@ -102,18 +102,18 @@ export default async function ReportPage({ params }: ReportPageProps) {
       name: 'FirstMover',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.firstmovernyc.com/open/logo.svg',
+        url: 'https://www.firstmovernyc.com/logo.svg',
       },
     },
-    mainEntityOfPage: `https://www.firstmovernyc.com/open/reports/${slug}`,
+    mainEntityOfPage: `https://www.firstmovernyc.com/reports/${slug}`,
   };
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.firstmovernyc.com/open' },
-      { '@type': 'ListItem', position: 2, name: 'Reports', item: 'https://www.firstmovernyc.com/open/reports' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.firstmovernyc.com' },
+      { '@type': 'ListItem', position: 2, name: 'Reports', item: 'https://www.firstmovernyc.com/reports' },
       { '@type': 'ListItem', position: 3, name: post.frontmatter.title },
     ],
   };

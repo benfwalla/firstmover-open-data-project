@@ -66,11 +66,11 @@ export default async function NeighborhoodsIndexPage() {
     '@type': 'CollectionPage',
     name: 'NYC Neighborhood Rent Prices',
     description: 'Rent prices, subway access, and commute times for 170+ NYC neighborhoods.',
-    url: 'https://www.firstmovernyc.com/open/neighborhoods',
+    url: 'https://www.firstmovernyc.com/neighborhoods',
     isPartOf: {
       '@type': 'WebSite',
       name: 'FirstMover Open Data Project',
-      url: 'https://www.firstmovernyc.com/open',
+      url: 'https://www.firstmovernyc.com',
     },
   };
 

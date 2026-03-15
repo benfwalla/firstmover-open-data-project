@@ -15,7 +15,7 @@ export function FixedNavbar() {
       <div className="container">
         <div className="nav-container">
           <Link href="/" className="nav-logo-link" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-            <img src="/open/logo.svg" alt="FirstMover" style={{ height: '28px', width: 'auto' }} />
+            <img src="/logo.svg" alt="FirstMover" style={{ height: '28px', width: 'auto' }} />
             <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '16px', color: 'var(--text)', letterSpacing: '-0.02em' }}>Open Data Project</span>
           </Link>
 

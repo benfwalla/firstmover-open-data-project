@@ -64,7 +64,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     description: post.frontmatter.description,
     datePublished: post.frontmatter.date,
     dateModified: post.frontmatter.date,
-    image: 'https://www.firstmovernyc.com/open/og-image.png',
+    image: 'https://www.firstmovernyc.com/og-image.png',
     author: {
       '@type': 'Organization',
       name: 'FirstMover',
@@ -75,18 +75,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       name: 'FirstMover',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.firstmovernyc.com/open/logo.svg',
+        url: 'https://www.firstmovernyc.com/logo.svg',
       },
     },
-    mainEntityOfPage: `https://www.firstmovernyc.com/open/blog/${resolvedParams.slug}`,
+    mainEntityOfPage: `https://www.firstmovernyc.com/blog/${resolvedParams.slug}`,
   };
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.firstmovernyc.com/open' },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.firstmovernyc.com/open/blog' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.firstmovernyc.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.firstmovernyc.com/blog' },
       { '@type': 'ListItem', position: 3, name: post.frontmatter.title },
     ],
   };
