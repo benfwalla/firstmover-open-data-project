@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Eye, Lightning, CheckCircle, AppStoreLogo, BellRinging, MagnifyingGlass, PaperPlaneTilt, ArrowUpRight, Lock, MapPin } from '@phosphor-icons/react';
+import { Eye, Lightning, CheckCircle, AppStoreLogo, BellRinging, MagnifyingGlass, PaperPlaneTilt } from '@phosphor-icons/react';
 
 const APP_STORE_URL = 'https://apps.apple.com/app/id6740444528';
 
@@ -16,9 +16,6 @@ const IMAGES = {
   cardNeverMissDialog: `${IMG}/card-never-miss-dialog.svg`,
   cardEasySetup: `${IMG}/card-easy-setup.png`,
   cardPark: `${IMG}/city-park.avif`,
-  freeRealtimeMap: `${IMG}/free-realtime-map.png`,
-  freeRentStabilized: `${IMG}/free-rent-stabilized.svg`,
-  freeOpenHouse: `${IMG}/free-open-house.png`,
 };
 
 const LEFT_NOTIF_SVGS = [
@@ -33,13 +30,12 @@ const RIGHT_NOTIF_SVGS = [
   `${IMG}/notif-right-3.svg`,
 ];
 
-const TESTIMONIALS = [
-  { name: 'Winston', text: "Got my dream studio in Hell\u2019s Kitchen thanks to FirstMover. The alert came in, I toured it that afternoon, and signed the lease two days later." },
-  { name: 'Ellyn', text: "FirstMover successfully found me our dream apartment in a few hours under budget \ud83e\udd29\ud83e\udd29 We were the first to reach out and tour, and we signed the lease right there!" },
-  { name: 'Marnie', text: "My only strategy was to just stare at StreetEasy all day and hit refresh. FirstMover gave me hope \ud83d\ude4c" },
-  { name: 'Jonathan', text: "I\u2019m actually bummed they\u2019re turning this into an app. This was kinda our secret in the friend group lol" },
-  { name: 'Vineet', text: "I got an alert at while brushing my teeth. Saw it. Loved it. Signed it. FirstMover works." },
-  { name: 'Meghan', text: "The app is super easy to set up, and I\u2019m getting about 8 listings per day. I wish I could filter on in-unit washer and pet-friendly, but they said they\u2019re working on it!" },
+const REVIEWS = [
+  { title: 'Huge edge in a competitive market', text: 'I used this during my August move and it immediately helped me find some of the best apartments and get a chance to see them first. This app removes the luck of being on Street Easy at the right time and gives you an advantage over other renters by getting to see apartments first. Highly recommend for anyone living in NYC.' },
+  { title: 'It actually worked', text: 'Dead simple app- put in the same search criteria you would for StreetEasy, and get real notifications. I would request getting amenities searchable' },
+  { title: 'saved me thousands of $$$', text: 'Insanely useful app, it got me my dream apartment for hundreds less than the market average. This app will literally save me thousands each year I live here' },
+  { title: '10/10 app!', text: 'If I could give this more than 5 stars I would.' },
+  { title: 'Amazing people', text: "Ben\u2019s a top tier person! Love this app too" },
 ];
 
 /* ---------- Sub-components ---------- */
@@ -77,7 +73,7 @@ function LandingNav() {
           <img src={IMAGES.logo} alt="FirstMover" width={28} height={28} />
         </a>
         <div className="landing-nav-links">
-          <a href="#free-stuff" className="landing-nav-link">Free Stuff</a>
+          <a href="/open" className="landing-nav-link">Open Data Project</a>
           <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="landing-nav-download">
             <AppStoreLogo size={16} weight="regular" />
             Download
@@ -190,8 +186,8 @@ function HeroSection() {
         </div>
 
         <p className="landing-hero-sub">
-          Beat the rush. Get listings the moment they go live,<br />
-          for $30 lifetime.
+          Beat the rush. Get listings the moment they go live.<br />
+          Free trial, then $30 lifetime.
         </p>
       </div>
     </section>
@@ -288,72 +284,48 @@ function ValuePropSection() {
   );
 }
 
-function FreeStuffSection() {
+function OpenDataSection() {
   return (
-    <section className="landing-free" id="free-stuff">
-      <div className="landing-free-inner">
-        <span className="landing-free-badge">Free Stuff</span>
-        <p className="landing-free-subtitle">
-          Cool, quick resources we&rsquo;re actively building for NYC apartment hunters.
-        </p>
-
-        <div className="landing-free-grid">
-          <div className="landing-free-card">
-            <a href="https://www.firstmovernyc.com/realtime-map" className="landing-free-card-thumb">
-              <img src={IMAGES.freeRealtimeMap} alt="Realtime Listing Map" loading="lazy" />
-            </a>
-            <div className="landing-free-card-body">
-              <div className="landing-free-card-info">
-                <div className="landing-free-card-header">
-                  <Lightning size={20} weight="fill" className="landing-free-card-emoji" />
-                  <h4 className="landing-free-card-title">Realtime Listing Map</h4>
-                </div>
-                <p className="landing-free-card-desc">A mission control of every listing added to StreetEasy in the last 60 minutes.</p>
-              </div>
-              <a href="https://www.firstmovernyc.com/realtime-map" className="landing-free-card-link">
-                <MapPin size={14} weight="bold" /> Open <ArrowUpRight size={12} weight="bold" />
-              </a>
+    <section className="landing-odp">
+      <div className="landing-odp-inner">
+        <div className="home-grid">
+          <div className="home-intro">
+            <h2 className="landing-odp-title">The FirstMover Open Data Project</h2>
+            <p className="home-description">
+              FirstMover sells push notifications. Everything we collect after is 100% free to the public.
+            </p>
+            <div className="home-links">
+              <a href="/open" className="home-about-link">Learn more</a>
             </div>
           </div>
 
-          <div className="landing-free-card">
-            <div className="landing-free-card-thumb">
-              <img src={IMAGES.freeRentStabilized} alt="Rent Stabilized Buildings Dataset" loading="lazy" />
+          <a href="/open-data" className="tool-card">
+            <h3 className="tool-title">Open Data</h3>
+            <p className="tool-description">
+              Monthly listing CSVs and a rent stabilized buildings database.
+            </p>
+            <div className="tool-card-preview-wrapper">
+              <img src="/images/open_data_listings_preview.svg" alt="Open Data preview" className="tool-card-preview" loading="lazy" />
             </div>
-            <div className="landing-free-card-body">
-              <div className="landing-free-card-info">
-                <div className="landing-free-card-header">
-                  <Lock size={20} weight="fill" className="landing-free-card-emoji" />
-                  <h4 className="landing-free-card-title">Rent Stabilized Buildings Dataset</h4>
-                </div>
-                <p className="landing-free-card-desc">Get a clean, searchable, and geotagged dataset of all known rent-stabilized units from the NYC Rent Guidelines Board.</p>
-              </div>
-              <div className="landing-free-card-links">
-                <a href="https://docs.google.com/spreadsheets/d/1_yUjWl9Z1z6T_8oRqXscOU6KFV25ECYgVO69lORFyxI/edit" target="_blank" rel="noopener noreferrer" className="landing-free-card-link">
-                  Google Sheet <ArrowUpRight size={12} weight="bold" />
-                </a>
-                <a href="https://github.com/firstmovernyc/nyc-rent-stabilized-listings" target="_blank" rel="noopener noreferrer" className="landing-free-card-link">
-                  Github <ArrowUpRight size={12} weight="bold" />
-                </a>
-              </div>
-            </div>
-          </div>
+          </a>
 
-          <a href="https://www.firstmovernyc.com/map" className="landing-free-card">
-            <div className="landing-free-card-thumb">
-              <img src={IMAGES.freeOpenHouse} alt="Open House Mapper" loading="lazy" />
+          <a href="/reports" className="tool-card">
+            <h3 className="tool-title">Reports</h3>
+            <p className="tool-description">
+              Monthly rent reports breaking down what's happening across NYC.
+            </p>
+            <div className="tool-card-preview-wrapper">
+              <img src="/images/reports_preview.png" alt="Reports preview" className="tool-card-preview" loading="lazy" />
             </div>
-            <div className="landing-free-card-body">
-              <div className="landing-free-card-info">
-                <div className="landing-free-card-header">
-                  <MapPin size={20} weight="fill" className="landing-free-card-emoji" />
-                  <h4 className="landing-free-card-title">Open House Mapper</h4>
-                </div>
-                <p className="landing-free-card-desc">View all upcoming open houses from StreetEasy on a filterable map.</p>
-              </div>
-              <span className="landing-free-card-link">
-                <MapPin size={14} weight="bold" /> Open <ArrowUpRight size={12} weight="bold" />
-              </span>
+          </a>
+
+          <a href="/resources" className="tool-card">
+            <h3 className="tool-title">Resources</h3>
+            <p className="tool-description">
+              Interactive tools and sites to explore NYC's rental market.
+            </p>
+            <div className="tool-card-preview-wrapper">
+              <img src="/images/resource_preview.svg" alt="Resources preview" className="tool-card-preview" loading="lazy" />
             </div>
           </a>
         </div>
@@ -366,12 +338,13 @@ function TestimonialsSection() {
   return (
     <section className="landing-testimonials">
       <div className="landing-testimonials-inner">
-        <h2 className="landing-testimonials-heading">Early User Vibes</h2>
+        <h2 className="landing-testimonials-heading">Real App Store Reviews</h2>
         <div className="landing-testimonials-grid">
-          {TESTIMONIALS.map((t) => (
-            <div key={t.name} className="testimonial-card">
-              <h4 className="testimonial-name">{t.name}</h4>
-              <p className="testimonial-text">{t.text}</p>
+          {REVIEWS.map((r) => (
+            <div key={r.title} className="testimonial-card">
+              <h4 className="testimonial-name">{r.title}</h4>
+              <div className="testimonial-stars">★★★★★</div>
+              <p className="testimonial-text">{r.text}</p>
             </div>
           ))}
         </div>
@@ -413,7 +386,7 @@ export function LandingPage() {
       <LandingNav />
       <HeroSection />
       <ValuePropSection />
-      <FreeStuffSection />
+      <OpenDataSection />
       <TestimonialsSection />
       <LandingFooter />
     </div>
