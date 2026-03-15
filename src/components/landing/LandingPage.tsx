@@ -161,10 +161,12 @@ function HeroSection() {
 
           {/* Phone */}
           <div className="hero-phone-mockup">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={IMAGES.phoneScreen}
               alt="FirstMover app showing a new listing notification"
               className="hero-phone-screen"
+              fetchPriority="high"
             />
             <img
               src={IMAGES.phoneFrame}
@@ -246,8 +248,8 @@ function ValuePropSection() {
           <div className="landing-features-grid">
             <div className="landing-feature-card">
               <div className="feature-card-visual feature-card-visual-clouds">
-                <img src={IMAGES.cardNeverMissBg} alt="" className="feature-card-clouds" />
-                <img src={IMAGES.cardNeverMissDialog} alt="" className="feature-card-dialog" />
+                <img src={IMAGES.cardNeverMissBg} alt="" className="feature-card-clouds" loading="lazy" />
+                <img src={IMAGES.cardNeverMissDialog} alt="" className="feature-card-dialog" loading="lazy" />
               </div>
               <div className="feature-card-content">
                 <BellRinging size={28} weight="regular" className="feature-card-icon" />
@@ -257,7 +259,7 @@ function ValuePropSection() {
             </div>
             <div className="landing-feature-card">
               <div className="feature-card-visual">
-                <img src={IMAGES.cardEasySetup} alt="" className="feature-card-phone" />
+                <img src={IMAGES.cardEasySetup} alt="" className="feature-card-phone" loading="lazy" />
               </div>
               <div className="feature-card-content">
                 <MagnifyingGlass size={28} weight="regular" className="feature-card-icon" />
@@ -267,8 +269,8 @@ function ValuePropSection() {
             </div>
             <div className="landing-feature-card">
               <div className="feature-card-visual feature-card-notifs">
-                <img src={LEFT_NOTIF_SVGS[0]} alt="" className="feature-notif feature-notif-1" />
-                <img src={RIGHT_NOTIF_SVGS[0]} alt="" className="feature-notif feature-notif-2" />
+                <img src={LEFT_NOTIF_SVGS[0]} alt="" className="feature-notif feature-notif-1" loading="lazy" />
+                <img src={RIGHT_NOTIF_SVGS[0]} alt="" className="feature-notif feature-notif-2" loading="lazy" />
               </div>
               <div className="feature-card-content">
                 <PaperPlaneTilt size={28} weight="regular" className="feature-card-icon" />
@@ -277,7 +279,7 @@ function ValuePropSection() {
               </div>
             </div>
             <div className="landing-feature-card landing-feature-card-park">
-              <img src={IMAGES.cardPark} alt="" className="feature-card-park-img" />
+              <img src={IMAGES.cardPark} alt="" className="feature-card-park-img" loading="lazy" />
             </div>
           </div>
         </div>
@@ -298,7 +300,7 @@ function FreeStuffSection() {
         <div className="landing-free-grid">
           <div className="landing-free-card">
             <a href="https://www.firstmovernyc.com/realtime-map" className="landing-free-card-thumb">
-              <img src={IMAGES.freeRealtimeMap} alt="Realtime Listing Map" />
+              <img src={IMAGES.freeRealtimeMap} alt="Realtime Listing Map" loading="lazy" />
             </a>
             <div className="landing-free-card-body">
               <div className="landing-free-card-info">
@@ -316,7 +318,7 @@ function FreeStuffSection() {
 
           <div className="landing-free-card">
             <div className="landing-free-card-thumb">
-              <img src={IMAGES.freeRentStabilized} alt="Rent Stabilized Buildings Dataset" />
+              <img src={IMAGES.freeRentStabilized} alt="Rent Stabilized Buildings Dataset" loading="lazy" />
             </div>
             <div className="landing-free-card-body">
               <div className="landing-free-card-info">
@@ -339,7 +341,7 @@ function FreeStuffSection() {
 
           <a href="https://www.firstmovernyc.com/map" className="landing-free-card">
             <div className="landing-free-card-thumb">
-              <img src={IMAGES.freeOpenHouse} alt="Open House Mapper" />
+              <img src={IMAGES.freeOpenHouse} alt="Open House Mapper" loading="lazy" />
             </div>
             <div className="landing-free-card-body">
               <div className="landing-free-card-info">

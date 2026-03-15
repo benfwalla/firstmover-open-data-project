@@ -1977,6 +1977,7 @@ a:hover {
    ============================ */
 
 body.landing .fixed-navbar { display: none; }
+body:has(.landing-page) .fixed-navbar { display: none; }
 body.landing { background: var(--bg); }
 
 .landing-page {
