@@ -20,6 +20,7 @@ interface Resource {
   description: string;
   href: string;
   external?: boolean;
+  tweetHref?: string;
   category: Category;
 }
 
@@ -48,6 +49,15 @@ const resources: Resource[] = [
     description: 'Detailed rental market data for 170+ NYC neighborhoods: median rents, trends, and active listings. Updated daily.',
     href: '/neighborhoods',
     category: 'research',
+  },
+
+  {
+    title: 'NYC Commute Time Map',
+    description: 'Visualizes NYC as a heatmap based on commute time to any destination. Useful for figuring out where to live.',
+    href: 'https://ranger.parallai.com/New%20York%20City',
+    external: true,
+    tweetHref: 'https://x.com/towheretobegin/status/2033210425509023918',
+    category: 'tools',
   },
 
   // Apartment Search
@@ -183,6 +193,22 @@ export default function ResourcesPage() {
               <p className="tool-description">{r.description}</p>
             </>
           );
+
+          if (r.tweetHref) {
+            return (
+              <div key={r.title} className="tool-card">
+                {inner}
+                <div style={{ marginTop: '12px', display: 'flex', gap: '16px' }}>
+                  <a href={r.href} target="_blank" rel="noopener noreferrer" style={{ fontSize: '13px', color: 'var(--text)', fontWeight: 500 }}>
+                    Visit ↗
+                  </a>
+                  <a href={r.tweetHref} target="_blank" rel="noopener noreferrer" style={{ fontSize: '13px', color: '#999' }}>
+                    via tweet ↗
+                  </a>
+                </div>
+              </div>
+            );
+          }
 
           return r.external ? (
             <a key={r.title} href={r.href} target="_blank" rel="noopener noreferrer" className="tool-card">
