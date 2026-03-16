@@ -154,7 +154,7 @@ export default function ResourcesPage() {
       <div className="section-header" style={{ textAlign: 'center', marginBottom: '32px' }}>
         <h1 className="section-title" style={{ fontSize: '40px' }}>Resources</h1>
         <p className="section-subtitle" style={{ maxWidth: '500px', margin: '12px auto 0' }}>
-          Tools, apps, and guides for navigating NYC&apos;s rental market
+          Tools, apps, and guides for NYC apartment hunting
         </p>
       </div>
 
