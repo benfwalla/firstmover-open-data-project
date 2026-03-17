@@ -1444,6 +1444,14 @@ a:hover {
 .rc-warning { background: rgba(255,193,7,0.1); border: 1px solid rgba(255,193,7,0.3); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 32px; }
 .rc-warning h4 { color: #f57c00; margin-bottom: 8px; }
 .rc-warning p { margin: 0; color: #666; }
+.rc-check-btn { width: 100%; padding: 14px; border-radius: 12px; border: none; background: var(--blue); color: white; font-family: var(--font-heading); font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+.rc-check-btn:hover:not(:disabled) { opacity: 0.9; }
+.rc-check-btn:disabled { opacity: 0.4; cursor: default; }
+.rc-chart-card { background: white; border-radius: 16px; padding: 32px; margin-bottom: 32px; border: 1px solid #eee; }
+.rc-chart-title { font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin-bottom: 20px; color: var(--text); }
+.rc-chart-note { font-size: 13px; color: #999; text-align: center; margin-top: 12px; }
+.rc-result-current { font-size: 15px; color: #666; margin-top: 8px; margin-bottom: 8px; }
+.rc-seasonal { background: rgba(0, 81, 255, 0.04); border: 1px solid rgba(0, 81, 255, 0.12); padding: 16px 20px; border-radius: 12px; font-size: 14px; line-height: 1.5; color: #444; margin-top: 20px; }
 .rc-nav { position: relative; top: auto; transform: none; margin-bottom: 32px; }
 
 /* Quiz extras */

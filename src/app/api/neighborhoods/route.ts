@@ -41,7 +41,6 @@ export async function GET(request: NextRequest) {
       GROUP BY area_name, bedroom_count
       HAVING COUNT(*) >= 5
       ORDER BY COUNT(*) DESC, median_rent ASC
-      LIMIT 50
     `;
     
     const result = await pool.query(query, params);
@@ -59,7 +58,8 @@ export async function GET(request: NextRequest) {
       }
       
       const neighborhood = neighborhoodMap.get(name);
-      neighborhood.median_rents[`${row.beds}br`] = parseInt(row.median_rent);
+      const bedKey = row.beds === 0 ? 'studio' : `${row.beds}br`;
+      neighborhood.median_rents[bedKey] = parseInt(row.median_rent);
       neighborhood.total_listings += parseInt(row.listing_count);
       neighborhood.daily_avg = (neighborhood.daily_avg || 0) + parseInt(row.recent_count) / 14;
     }

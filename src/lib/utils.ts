@@ -2,6 +2,13 @@ export function formatPrice(n: number) {
   return '$' + Math.round(n).toLocaleString('en-US');
 }
 
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+export function formatMonth(iso: string) {
+  const [y, m] = iso.split('-');
+  return `${MONTHS[parseInt(m) - 1]} '${y.slice(2)}`;
+}
+
 export function triggerBlobDownload(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');

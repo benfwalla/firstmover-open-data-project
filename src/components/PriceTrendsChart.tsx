@@ -10,13 +10,12 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import { formatPrice, formatMonth } from "@/lib/utils";
 
 type Props = {
   data?: Array<{ month: string; median_rent: number; listing_count: string }>;
   monthlyTrendsWithBedrooms?: Record<string, Record<string, { median_rent: number; listing_count: number }>>;
 };
-
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 const BEDROOM_FILTERS = [
   { key: 'all', label: 'All', color: '#0051ff' },
@@ -25,15 +24,6 @@ const BEDROOM_FILTERS = [
   { key: '2', label: '2BR', color: '#ffbb33' },
   { key: '3', label: '3BR', color: '#AA66CC' },
 ];
-
-function formatMonth(iso: string) {
-  const d = new Date(iso);
-  return `${MONTHS[d.getMonth()]} '${String(d.getFullYear()).slice(2)}`;
-}
-
-function formatPrice(v: number) {
-  return `$${Math.round(v).toLocaleString()}`;
-}
 
 export function PriceTrendsChart({ data, monthlyTrendsWithBedrooms }: Props) {
   const [selectedFilter, setSelectedFilter] = useState('all');
