@@ -1450,7 +1450,9 @@ a:hover {
 .quiz-salary-display { font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
 .quiz-small-note { font-size: 12px; color: #666; }
 .quiz-mode-btn { background-color: transparent; color: var(--blue); border: 2px solid var(--blue); padding: 8px 16px; font-size: 14px; }
+.quiz-mode-btn:hover { background: transparent; color: var(--blue); }
 .quiz-mode-btn.selected { background-color: var(--blue); color: white; }
+.quiz-mode-btn.selected:hover { background-color: var(--blue); color: white; }
 .quiz-label { display: block; margin-bottom: 8px; font-size: 15px; font-weight: 500; }
 .quiz-label-16 { display: block; margin-bottom: 6px; font-size: 15px; font-weight: 500; }
 .quiz-results-header { margin-bottom: 24px; }
@@ -1688,6 +1690,7 @@ a:hover {
   .gtr-intro-subtitle { font-size: 15px; margin-bottom: 24px; }
   .gtr-intro-rule { font-size: 15px; }
   .gtr-numpad-key { padding: 14px 0; font-size: 20px; }
+  .gtr-input-wrap { margin-bottom: 24px; }
   .gtr-input-display { font-size: 22px; padding: 10px 0; }
   .gtr-cta-card { margin: 0 16px 16px; padding: 24px 16px; }
   .gtr-cta-title { font-size: 18px; }

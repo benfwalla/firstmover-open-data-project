@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
         full_bathroom_count, living_area_size, lead_media_photo,
         url_path, created_at
       FROM listings
-      WHERE created_at >= NOW() - INTERVAL '30 days'
+      WHERE created_at >= NOW() - INTERVAL '14 days'
         AND price > 0
         AND lead_media_photo IS NOT NULL AND lead_media_photo != ''
         AND url_path IS NOT NULL

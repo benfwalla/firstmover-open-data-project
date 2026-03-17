@@ -259,10 +259,10 @@ export function FindYourNeighborhoodQuiz() {
             <div style={{ marginBottom: '32px' }}>
               <div className="quiz-mode-toggle">
                 <button onClick={() => setBudgetMode('budget')} className={`quiz-button secondary quiz-mode-btn ${budgetMode === 'budget' ? 'selected' : ''}`}>
-                  I know my budget
+                  Household monthly budget
                 </button>
                 <button onClick={() => setBudgetMode('salary')} className={`quiz-button secondary quiz-mode-btn ${budgetMode === 'salary' ? 'selected' : ''}`}>
-                  I know my salary
+                  Household annual salary
                 </button>
               </div>
 
