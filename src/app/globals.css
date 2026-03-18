@@ -1032,6 +1032,13 @@ a:hover {
   text-decoration: none;
 }
 
+.nav-mobile-menu .nav-cta {
+  align-self: flex-start;
+  margin: 4px 24px 4px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
 /* Mobile Navbar Adjustments */
 @media (max-width: 768px) {
   .nav-links {
