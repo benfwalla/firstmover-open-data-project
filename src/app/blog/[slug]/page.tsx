@@ -119,18 +119,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
       <div className="container">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+        <div style={{ marginBottom: '48px' }}>
           <h1 className="section-title" style={{ fontSize: '36px' }}>
             {post.frontmatter.title}
           </h1>
-          <p className="section-subtitle">
+          <p className="section-subtitle" style={{ textAlign: 'left' }}>
             {post.frontmatter.description}
           </p>
           <div style={{
             fontSize: '14px',
             color: '#888',
             display: 'flex',
-            justifyContent: 'center',
             gap: '16px',
             marginTop: '16px'
           }}>
