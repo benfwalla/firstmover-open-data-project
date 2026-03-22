@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: ['/og-image.png'],
   },
+  other: {
+    'apple-itunes-app': 'app-id=6740444528',
+  },
 };
 
 const jsonLd = [

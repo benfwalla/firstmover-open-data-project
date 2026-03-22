@@ -15,6 +15,7 @@ import {
 } from '@/lib/neighborhoods';
 import { getNeighborhoodRentData } from '@/lib/neighborhood-data';
 import { formatPrice } from '@/lib/utils';
+import { AppDownloadCTA } from '@/components/AppDownloadCTA';
 
 export async function generateStaticParams() {
   return getAllNeighborhoodSlugs().map((slug) => ({ slug }));
@@ -352,9 +353,7 @@ export default async function NeighborhoodPage({
         </section>
       )}
 
-      <p className="fm-attribution" style={{ marginTop: '32px', textAlign: 'center', color: '#000' }}>
-        Get new listing alerts for {name} with <a href="https://firstmovernyc.com" target="_blank" rel="noopener noreferrer" style={{ color: '#000', textDecoration: 'underline', textUnderlineOffset: '3px' }}>FirstMover</a>
-      </p>
+      <AppDownloadCTA neighborhood={name} />
     </div>
   );
 }

@@ -10,6 +10,7 @@ import {
 } from '@/components/mdx-components';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { AppDownloadCTA } from '@/components/AppDownloadCTA';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -151,6 +152,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="report-narrative">
           <Content />
         </div>
+
+        <AppDownloadCTA />
 
         {/* Footer Navigation */}
         <div style={{
