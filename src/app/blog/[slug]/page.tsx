@@ -103,7 +103,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <div className="publication-section narrow">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([articleJsonLd, breadcrumbJsonLd]) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([
+          articleJsonLd,
+          breadcrumbJsonLd,
+          ...(post.frontmatter.faq ? [{
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: post.frontmatter.faq.map((item: { q: string; a: string }) => ({
+              '@type': 'Question',
+              name: item.q,
+              acceptedAnswer: { '@type': 'Answer', text: item.a },
+            })),
+          }] : []),
+        ]) }}
       />
       <div className="container">
         {/* Header */}
