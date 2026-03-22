@@ -12,6 +12,8 @@ export interface PostFrontmatter {
   tags?: string[];
   readTime?: string;
   slug?: string;
+  ogImage?: string;
+  faq?: { q: string; a: string }[];
 }
 
 export interface Post {
