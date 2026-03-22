@@ -471,6 +471,27 @@ a:hover {
   margin-bottom: 28px;
 }
 
+.report-narrative ul,
+.report-narrative ol {
+  margin: 0 0 28px;
+  padding-left: 28px;
+}
+
+.report-narrative ol {
+  list-style-type: decimal;
+}
+
+.report-narrative ul {
+  list-style-type: disc;
+}
+
+.report-narrative li {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 6px;
+  padding-left: 4px;
+}
+
 .report-narrative table {
   width: 100%;
   border-collapse: collapse;
