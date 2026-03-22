@@ -36,7 +36,15 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     title: `${post.frontmatter.title} · FirstMover Open Data Project`,
     description: post.frontmatter.description,
     alternates: { canonical: `/blog/${resolvedParams.slug}` },
-    openGraph: { url: `/blog/${resolvedParams.slug}`, type: 'article' },
+    openGraph: {
+      url: `/blog/${resolvedParams.slug}`,
+      type: 'article',
+      images: [post.frontmatter.ogImage || '/og-image.png'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: [post.frontmatter.ogImage || '/og-image.png'],
+    },
   };
 }
 
