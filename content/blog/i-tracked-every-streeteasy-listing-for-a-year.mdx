@@ -1,0 +1,187 @@
+---
+title: "I Tracked Every New StreetEasy Listing for a Year. Here's What I Found."
+description: "277,701 rental listings. 15 months of data. Every neighborhood, every price point, every bedroom count. I built a tracker that watches StreetEasy around the clock — here's what the data actually looks like."
+date: "2026-03-17"
+type: blog
+tags: [data, nyc, rentals, streeteasy, neighborhoods, market-data]
+readTime: "9 min read"
+---
+
+In early January 2025, I started tracking every new rental listing that appeared on StreetEasy. Every studio, every penthouse, every sketchy basement apartment with "natural light" in the description. The tracker runs continuously — when a new listing goes up, we grab it.
+
+Fifteen months later, I'm sitting on 277,701 listings. I hadn't really looked at the full dataset until this week. So I pulled it all into a database and started asking questions.
+
+Some of this confirmed what I expected. Some of it genuinely surprised me. Here's all of it.
+
+## The seasonal curve is real, and it's dramatic
+
+Everyone says NYC rentals are seasonal. Here's what that actually looks like in raw listing counts:
+
+- **January 2025:** 9,491
+- **February:** 12,387
+- **March:** 19,740
+- **April:** 21,473
+- **May:** 25,309
+- **June:** 24,180
+- **July:** 27,303 (peak)
+- **August:** 24,360
+- **September:** 22,559
+- **October:** 16,144
+- **November:** 11,139
+- **December:** 15,434
+- **January 2026:** 17,538
+- **February 2026:** 16,149
+- **March 2026 (partial):** 14,495
+
+July had nearly three times the listings that January did. 27,303 vs 9,491. If you're apartment hunting in January, you're choosing from a third of the inventory that someone searching in July sees. Whether that's good or bad depends on your strategy — less competition, but also less to choose from.
+
+The November dip is the real dead zone. Just 11,139 new listings the entire month. If a landlord is listing in November, they probably need it rented.
+
+December bouncing back to 15K surprised me. I figured the holidays would keep things quiet, but apparently landlords start pushing inventory before the new year.
+
+## Where the listings are
+
+I wanted to know which neighborhoods produce the most rental listings. The top 20, ranked by total listings over the full tracking period:
+
+1. **Bushwick** — 12,620
+2. **Williamsburg** — 12,348
+3. **Astoria** — 8,049
+4. **East Village** — 7,702
+5. **Hell's Kitchen** — 7,118
+6. **Upper West Side** — 7,093
+7. **Crown Heights** — 6,958
+8. **Flatbush** — 6,787
+9. **Stuyvesant Heights** — 6,429
+10. **Yorkville** — 6,426
+11. **Lenox Hill** — 5,781
+12. **Bedford-Stuyvesant** — 5,579
+13. **Hunters Point** — 4,970
+14. **Greenpoint** — 4,539
+15. **Murray Hill** — 4,271
+16. **Downtown Brooklyn** — 4,194
+17. **Financial District** — 3,963
+18. **Chelsea** — 3,959
+19. **West Village** — 3,637
+20. **Kips Bay** — 3,586
+
+Bushwick is the listing king of New York City and it's not even close. 12,620 listings in 15 months — that's roughly 28 new listings going up every single day. [Williamsburg](/neighborhoods/williamsburg) is right behind it. Between just those two neighborhoods, you're looking at about 25,000 listings. Nearly 9% of all rental inventory tracked came from two adjacent Brooklyn neighborhoods.
+
+[Astoria](/neighborhoods/astoria) taking third isn't surprising if you've been paying attention to Queens, but the gap between it and the Brooklyn leaders is worth noting. Brooklyn dominates the volume game.
+
+The Manhattan neighborhoods that show up — [East Village](/neighborhoods/east-village), [Hell's Kitchen](/neighborhoods/hells-kitchen), [Upper West Side](/neighborhoods/upper-west-side) — are all in the 6,000-7,700 range. High volume, but not touching Brooklyn.
+
+[Flatbush](/neighborhoods/flatbush) at 6,787 is interesting. That's more listings than Chelsea, more than the Financial District, more than the West Village. It doesn't get nearly the same attention.
+
+## The price picture
+
+Median rent across all NYC listings: **$3,766**. Average: **$4,505**. That gap between median and average tells you something — there's a long tail of expensive listings pulling the average up.
+
+For New Jersey listings in the dataset (yeah, StreetEasy covers parts of NJ now): median **$2,950**, average **$3,326**. About $800 less per month at the median.
+
+Broken down by bedroom count:
+
+- **Studios:** $3,130 median (44,551 listings)
+- **1-bedrooms:** $3,449 median (102,534 listings)
+- **2-bedrooms:** $4,000 median (86,565 listings)
+- **3-bedrooms:** $4,299 median (34,961 listings)
+- **4-bedrooms:** $5,200 median (7,693 listings)
+- **5-bedrooms:** $7,474 median (1,140 listings)
+
+The jump from studio to 1-bedroom is only $319. The jump from 1-bedroom to 2-bedroom is $551. But going from 4-bedroom to 5-bedroom? $2,274. The per-bedroom cost curve isn't linear — it gets steep fast once you're past 3 bedrooms.
+
+## Most expensive vs cheapest neighborhoods
+
+The priciest neighborhoods (median rent, minimum 200 listings):
+
+1. **Central Park South** — $8,500
+2. **Tribeca** — $7,789
+3. **Hudson Square** — $7,625
+4. **Noho** — $6,295
+5. **Flatiron** — $6,135
+6. **Vinegar Hill** — $6,050
+7. **NoMad** — $6,000
+8. **West Chelsea** — $5,770
+9. **Stuyvesant Town/PCV** — $5,610
+10. **Soho** — $5,500
+
+Central Park South at $8,500 median. That means half the listings there are *above* $8,500. That's a studio-and-1-bedroom median, not a penthouse median.
+
+Vinegar Hill at #6 caught me off guard. It's a tiny neighborhood near DUMBO — maybe 10 square blocks. But it had 883 listings over the period, enough to be statistically meaningful, and the median was $6,050. That's more expensive than NoMad.
+
+Now the cheapest:
+
+1. **University Heights** — $1,999
+2. **Bath Beach** — $2,000
+3. **Briarwood** — $2,150
+4. **Bensonhurst** — $2,250
+5. **Jamaica Estates** — $2,262
+6. **West Side (Jersey City area)** — $2,285
+7. **Far Rockaway** — $2,299
+8. **Bayonne** — $2,315
+9. **Bay Ridge** — $2,375
+10. **Jersey City** — $2,382
+
+University Heights in the Bronx, just barely under $2,000 at the median. A Central Park South apartment at median costs 4.25x what a University Heights apartment does. Same city.
+
+[Bath Beach](/neighborhoods/bath-beach) in southern Brooklyn at $2,000 flat is a neighborhood most people outside of NYC have never heard of. It's quiet, mostly residential, near the water. Two grand a month.
+
+## Bedroom count breakdown
+
+What's actually on the market?
+
+- **Studios (0 bed):** 16.0%
+- **1-bedrooms:** 36.9%
+- **2-bedrooms:** 31.2%
+- **3-bedrooms:** 12.6%
+- **4-bedrooms:** 2.8%
+- **5+ bedrooms:** 0.5%
+
+More than a third of all NYC rental listings are 1-bedrooms. If you and a friend want to split a 2-bedroom, you're working with 31% of the market. If you need a 3-bedroom for a family? 12.6%. And if you're trying to find a 4-bedroom rental in New York? Good luck — that's less than 3% of all inventory.
+
+The studio number being 16% is lower than I expected. I would have guessed closer to 25%, given how many buildings in Manhattan seem like they're 80% studios. Turns out the outer boroughs balance that out with larger units.
+
+Also: there is a listing in the dataset for a 35-bedroom apartment in NoMad listed at $13,800/month. That's a data entry error. Probably. I choose not to investigate further.
+
+## The fee situation
+
+Only 18.2% of listings are no-fee. That means over 80% of rental listings on StreetEasy involve a broker fee. The median rent on no-fee apartments is actually higher — $3,999 vs $3,600 for fee apartments. Landlords on no-fee listings tend to price the fee into the rent, which makes sense when you think about it. You're paying either way. The question is whether you want a higher monthly or a lump sum upfront.
+
+About 38,845 listings (14%) offered at least one month free. The median concession was 1 month. These are mostly the big new development buildings trying to fill units — a month free on a $4,000 apartment is functionally a 8% discount on your first year, which sounds better as "1 month free!" than "$333 off per month."
+
+## Building types
+
+This one tells a story about what NYC's rental stock actually looks like:
+
+- **Rental buildings:** 64% (the big dedicated rental buildings)
+- **Condos:** 9% (owners renting out their units)
+- **Mixed use:** 5%
+- **Two-family homes:** 4%
+- **Three-family homes:** 4%
+- **Co-ops:** 4%
+- **Houses:** 3%
+
+Nearly 13% of rental listings come from two-family and three-family homes. That's the classic NYC small landlord — someone who owns a brownstone and rents out a floor or two. It's a bigger slice of the market than co-ops.
+
+## What I didn't expect
+
+A few things that jumped out after staring at this data:
+
+**Bushwick's dominance.** I knew it was a big rental market, but the sheer volume — 12,620 listings, more than any Manhattan neighborhood — puts it in a category of its own. That's a neighborhood with massive turnover.
+
+**The November dead zone.** 11,139 listings. If you're looking for leverage in negotiations, November might be when you have the most. Landlords listing that month aren't doing it for fun.
+
+**Vinegar Hill pricing.** A neighborhood most New Yorkers couldn't point to on a map has a median rent higher than NoMad, Soho, and West Chelsea.
+
+**The 35-bedroom apartment.** I know I said I wouldn't investigate, but it lives rent-free in my head (unlike its $13,800/month asking price).
+
+**How few large apartments exist.** Under 3% of listings are 4-bedrooms. Families looking for space in NYC aren't just competing on price — they're competing for units that barely exist.
+
+## All the data, free
+
+Everything I've been collecting is available at [firstmovernyc.com/open-data](/open-data). All of it. Filter by neighborhood, price range, bedroom count, whatever you want. I built this because I was apartment hunting and got tired of not having actual data. Turns out other people wanted it too.
+
+If you want to check whether your rent is reasonable compared to what's actually listing in your neighborhood, we built a [rent check tool](/tools/rent-check) for that.
+
+And if any of the neighborhoods above caught your eye, every one of them has a dedicated page with current listings and price stats — just hit [firstmovernyc.com/neighborhoods](/neighborhoods) and pick yours.
+
+The tracker is still running. Ask me again in a year and we'll have half a million listings to look at.
