@@ -10,6 +10,7 @@ import { notFound } from 'next/navigation';
 
 import februaryData from '@/data/february-2026-data.json';
 import marchData from '@/data/march-2026-data.json';
+import aprilData from '@/data/april-2026-data.json';
 
 interface ReportPageProps {
   params: Promise<{ slug: string }>;
@@ -43,6 +44,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
   const reportDataMap: Record<string, any> = {
     'february-2026': februaryData,
     'march-2026': marchData,
+    'april-2026': aprilData,
   };
   const data = reportDataMap[slug];
   if (!data) notFound();
