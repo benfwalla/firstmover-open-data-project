@@ -1,6 +1,12 @@
 import { NextRequest } from 'next/server';
 import { getPool } from '@/lib/db';
 
+// Neighborhoods where the same area_name appears in multiple boroughs.
+// Map from area_name to the zip codes that should be EXCLUDED.
+const EXCLUDED_ZIPS: Record<string, string[]> = {
+  'Murray Hill': ['11354', '11355', '11358', '11364', '10029'], // Exclude Queens + East Harlem zips from Manhattan Murray Hill
+};
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -12,9 +18,9 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '10');
 
     const pool = getPool();
-    
+
     let query = `
-      SELECT 
+      SELECT
         id, area_name, street, unit, price, bedroom_count,
         full_bathroom_count, living_area_size, lead_media_photo,
         url_path, created_at
@@ -24,14 +30,22 @@ export async function GET(request: NextRequest) {
         AND lead_media_photo IS NOT NULL AND lead_media_photo != ''
         AND url_path IS NOT NULL
     `;
-    
+
     const params: any[] = [];
     let paramIndex = 1;
-    
+
     if (neighborhood) {
       query += ` AND area_name ILIKE $${paramIndex}`;
-      params.push(`%${neighborhood}%`);
+      params.push(neighborhood);
       paramIndex++;
+
+      // Exclude mismatched zip codes for cross-borough name collisions
+      const excluded = EXCLUDED_ZIPS[neighborhood];
+      if (excluded) {
+        const zipPlaceholders = excluded.map(() => `$${paramIndex++}`).join(', ');
+        query += ` AND (zip_code IS NULL OR zip_code NOT IN (${zipPlaceholders}))`;
+        params.push(...excluded);
+      }
     }
     
     if (beds) {

@@ -183,7 +183,8 @@ export function FindYourNeighborhoodQuiz() {
 
   const scoreNeighborhoods = (neighborhoods: Neighborhood[]) =>
     neighborhoods.map(n => {
-      const vibeScore = quiz.vibes.reduce((score, v) => score + ((VIBE_MAPPING[v as keyof typeof VIBE_MAPPING] || []).includes(n.name) ? 1 : 0), 0);
+      const vibeMatches = quiz.vibes.reduce((score, v) => score + ((VIBE_MAPPING[v as keyof typeof VIBE_MAPPING] || []).includes(n.name) ? 1 : 0), 0);
+      const vibeScore = quiz.vibes.length > 0 ? vibeMatches / quiz.vibes.length : 0;
       let commuteBonus = 0;
       if (quiz.commute) {
         const d = (commuteData as any)[n.name];
