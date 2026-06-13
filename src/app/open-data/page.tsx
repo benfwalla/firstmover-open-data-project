@@ -2,8 +2,6 @@ import DownloadLink from '@/components/DownloadLink';
 import DownloadAllButton from '@/components/DownloadAllButton';
 
 import type { Metadata } from 'next';
-import fs from 'fs';
-import path from 'path';
 
 export const metadata: Metadata = {
   title: 'Open Data · FirstMover Open Data Project',
@@ -15,41 +13,30 @@ export const metadata: Metadata = {
 const DATA_BASE = 'https://raw.githubusercontent.com/benfwalla/firstmover-open-data-project/main/public/data';
 
 const MONTH_ABBRS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-const DATA_DIR = path.join(process.cwd(), 'public', 'data');
-
-const MONTH_NOTES: Record<string, string> = {
-  '2025-11.csv': 'Data not available Nov 1–7',
-  '2025-10.csv': 'Data not available Oct 27–31',
-};
 
 function toDownloadName(file: string): string {
   const [yyyy, mm] = file.replace('.csv', '').split('-');
   return `${yyyy}-${MONTH_ABBRS[+mm - 1]}-nyc-rental-listings.csv`;
 }
 
-function toDisplayMonth(file: string): string {
-  const [yyyy, mm] = file.replace('.csv', '').split('-');
-  return `${MONTH_NAMES[+mm - 1]} ${yyyy}`;
-}
-
-function countCsvRows(filePath: string): number {
-  const content = fs.readFileSync(filePath, 'utf8').trimEnd();
-  if (!content) return 0;
-  return Math.max(0, content.split('\n').length - 1);
-}
-
-function getMonthlyData() {
-  return fs.readdirSync(DATA_DIR)
-    .filter((file) => /^\d{4}-\d{2}\.csv$/.test(file))
-    .sort((a, b) => b.localeCompare(a))
-    .map((file) => ({
-      month: toDisplayMonth(file),
-      file,
-      count: countCsvRows(path.join(DATA_DIR, file)),
-      note: MONTH_NOTES[file],
-    }));
-}
+const monthlyData = [
+  { month: 'May 2026', file: '2026-05.csv', count: 22662 },
+  { month: 'April 2026', file: '2026-04.csv', count: 15101 },
+  { month: 'March 2026', file: '2026-03.csv', count: 20386 },
+  { month: 'February 2026', file: '2026-02.csv', count: 16059 },
+  { month: 'January 2026', file: '2026-01.csv', count: 17538 },
+  { month: 'December 2025', file: '2025-12.csv', count: 15434 },
+  { month: 'November 2025', file: '2025-11.csv', count: 11139, note: 'Data not available Nov 1–7' },
+  { month: 'October 2025', file: '2025-10.csv', count: 16144, note: 'Data not available Oct 27–31' },
+  { month: 'September 2025', file: '2025-09.csv', count: 22559 },
+  { month: 'August 2025', file: '2025-08.csv', count: 24360 },
+  { month: 'July 2025', file: '2025-07.csv', count: 27303 },
+  { month: 'June 2025', file: '2025-06.csv', count: 24180 },
+  { month: 'May 2025', file: '2025-05.csv', count: 25309 },
+  { month: 'April 2025', file: '2025-04.csv', count: 21473 },
+  { month: 'March 2025', file: '2025-03.csv', count: 19740 },
+  { month: 'February 2025', file: '2025-02.csv', count: 12387 },
+];
 
 const COLUMNS = [
   { name: 'created_at_utc', desc: 'When the listing first appeared on the market (UTC)' },
@@ -89,7 +76,6 @@ const COLUMNS = [
 ];
 
 export default function OpenDataPage() {
-  const monthlyData = getMonthlyData();
   const datasetJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
