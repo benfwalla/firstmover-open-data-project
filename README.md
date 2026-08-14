@@ -36,7 +36,7 @@ bun dev
 
 The `Publish monthly open data` GitHub Actions workflow generates and publishes the previous completed UTC month at 10:17 AM America/New_York time on the 2nd of each month. It runs again on the 5th to reconcile any late-arriving records. The workflow updates the CSV and the Open Data table, commits changes to `main`, and lets the existing Vercel integration deploy them.
 
-The dataset uses UTC calendar-month boundaries because `listings.created_at` is a PostgreSQL `timestamptz` column and the public CSV documents it as `created_at_utc`.
+The dataset uses UTC calendar-month boundaries because `listings.created_at` is a PostgreSQL `timestamptz` column and the public CSV documents it as `created_at_utc`. StreetEasy open-house fields are stored as timezone-naive New York local timestamps, so the generator explicitly interprets them in `America/New_York` before exporting their UTC values.
 
 To publish or reconcile a completed month manually:
 

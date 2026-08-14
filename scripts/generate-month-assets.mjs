@@ -4,6 +4,10 @@ import fs from 'fs';
 import path from 'path';
 import pg from 'pg';
 
+// StreetEasy event timestamps are stored without a timezone and represent New York local time.
+// Pin the process timezone so CSV conversion is identical locally and in GitHub Actions.
+process.env.TZ = 'America/New_York';
+
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const HAS_REST_CREDENTIALS = Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
@@ -117,6 +121,7 @@ async function fetchRowsForRange(startDate, endDate, select) {
         connectionTimeoutMillis: 15000,
       });
       await databaseClient.connect();
+      await databaseClient.query("SET TIME ZONE 'UTC'");
     }
 
     const result = await databaseClient.query(
@@ -390,7 +395,9 @@ async function main() {
   const previousMonth = shiftMonth(currentMonth, -1);
   const trendMonths = Array.from({ length: 6 }, (_, index) => shiftMonth(currentMonth, index - 5));
 
-  console.log(`Generating assets for market month ${currentMonth} (slug ${args.slug})`);
+  console.log(args.dataOnly
+    ? `Generating data for market month ${currentMonth}`
+    : `Generating assets for market month ${currentMonth} (slug ${args.slug})`);
 
   const currentRows = await fetchRowsForRange(`${currentMonth}-01`, `${shiftMonth(currentMonth, 1)}-01`, '*');
 
