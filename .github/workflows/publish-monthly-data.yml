@@ -1,0 +1,68 @@
+name: Publish monthly open data
+
+on:
+  schedule:
+    - cron: '17 10 2,5 * *'
+      timezone: 'America/New_York'
+  workflow_dispatch:
+    inputs:
+      month:
+        description: 'Completed market month to publish (YYYY-MM); defaults to the previous UTC month'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-monthly-open-data
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_HOST: ${{ secrets.SUPABASE_HOST }}
+      SUPABASE_PORT: ${{ secrets.SUPABASE_PORT }}
+      SUPABASE_DB: ${{ secrets.SUPABASE_DB }}
+      SUPABASE_USER: ${{ secrets.SUPABASE_USER }}
+      SUPABASE_PASSWORD: ${{ secrets.SUPABASE_PASSWORD }}
+      TARGET_MONTH: ${{ inputs.month || '' }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Generate completed month
+        run: |
+          if [[ -n "$TARGET_MONTH" ]]; then
+            node scripts/publish-completed-month.mjs --month "$TARGET_MONTH"
+          else
+            node scripts/publish-completed-month.mjs
+          fi
+
+      - name: Validate generated files
+        run: |
+          node --check scripts/generate-month-assets.mjs
+          node --check scripts/publish-completed-month.mjs
+          git diff --check
+
+      - name: Commit and publish changes
+        run: |
+          git add public/data src/app/open-data/page.tsx
+          if git diff --cached --quiet; then
+            echo "Monthly data is already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Publish monthly open data"
+          git push origin HEAD:main

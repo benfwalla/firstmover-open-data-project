@@ -32,6 +32,18 @@ cp .env.example .env.local
 bun dev
 ```
 
+## Monthly data publishing
+
+The `Publish monthly open data` GitHub Actions workflow generates and publishes the previous completed UTC month at 10:17 AM America/New_York time on the 2nd of each month. It runs again on the 5th to reconcile any late-arriving records. The workflow updates the CSV and the Open Data table, commits changes to `main`, and lets the existing Vercel integration deploy them.
+
+The dataset uses UTC calendar-month boundaries because `listings.created_at` is a PostgreSQL `timestamptz` column and the public CSV documents it as `created_at_utc`.
+
+To publish or reconcile a completed month manually:
+
+```bash
+node --env-file=.env.local scripts/publish-completed-month.mjs --month YYYY-MM
+```
+
 ## Contributing
 
 Feedback and contributions are welcome. Feel free to open an issue or submit a PR.

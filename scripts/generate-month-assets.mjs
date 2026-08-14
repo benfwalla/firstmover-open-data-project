@@ -32,7 +32,7 @@ const NYC_BOUNDS = {
 };
 
 function parseArgs(argv) {
-  const args = { writeReport: false };
+  const args = { writeReport: false, dataOnly: false };
   for (let i = 2; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === '--market-month') args.marketMonth = argv[++i];
@@ -40,12 +40,13 @@ function parseArgs(argv) {
     else if (arg === '--report-title') args.reportTitle = argv[++i];
     else if (arg === '--report-date') args.reportDate = argv[++i];
     else if (arg === '--write-report') args.writeReport = true;
+    else if (arg === '--data-only') args.dataOnly = true;
     else if (arg === '--report-description') args.reportDescription = argv[++i];
     else if (arg === '--summary') args.summary = argv[++i];
     else throw new Error(`Unknown arg: ${arg}`);
   }
-  if (!args.marketMonth || !args.slug) {
-    throw new Error('Usage: node scripts/generate-month-assets.mjs --market-month YYYY-MM --slug month-year');
+  if (!args.marketMonth || (!args.dataOnly && !args.slug)) {
+    throw new Error('Usage: node scripts/generate-month-assets.mjs --market-month YYYY-MM [--data-only | --slug month-year]');
   }
   return args;
 }
@@ -392,6 +393,22 @@ async function main() {
   console.log(`Generating assets for market month ${currentMonth} (slug ${args.slug})`);
 
   const currentRows = await fetchRowsForRange(`${currentMonth}-01`, `${shiftMonth(currentMonth, 1)}-01`, '*');
+
+  if (args.dataOnly) {
+    const currentSummary = summarizeMonthRows(currentRows);
+    const csvPath = path.join(process.cwd(), 'public', 'data', `${currentMonth}.csv`);
+    fs.mkdirSync(path.dirname(csvPath), { recursive: true });
+    fs.writeFileSync(csvPath, buildCsv(currentRows));
+    if (databaseClient) await databaseClient.end();
+
+    console.log(JSON.stringify({
+      marketMonth: currentMonth,
+      listings: currentSummary.marketStats.total_active,
+      csvPath,
+    }, null, 2));
+    return;
+  }
+
   const previousRows = await fetchRowsForRange(`${previousMonth}-01`, `${currentMonth}-01`, 'id,created_at,price,area_name,bedroom_count,latitude,longitude');
 
   const trendRowsMap = new Map();
