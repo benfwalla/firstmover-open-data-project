@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
   getAllNeighborhoods,
+  getNeighborhoodAreaNames,
   getNeighborhoodStaticData,
 } from '@/lib/neighborhoods';
 import { getPool } from '@/lib/db';
@@ -14,23 +15,34 @@ export const metadata: Metadata = {
   openGraph: { url: '/neighborhoods' },
 };
 
-async function getMedianRents(): Promise<Record<string, number>> {
+async function getMedianRents(neighborhoodNames: string[]): Promise<Record<string, number>> {
   try {
     const pool = getPool();
+    const neighborhoodAreas = neighborhoodNames.flatMap((neighborhoodName) =>
+      getNeighborhoodAreaNames(neighborhoodName).map((areaName) => ({ neighborhoodName, areaName }))
+    );
+    const values = neighborhoodAreas
+      .map((_, index) => `($${index * 2 + 1}::text, $${index * 2 + 2}::text)`)
+      .join(', ');
+    const params = neighborhoodAreas.flatMap(({ neighborhoodName, areaName }) => [neighborhoodName, areaName]);
+
     const result = await pool.query(`
+      WITH neighborhood_areas(neighborhood_name, area_name) AS (
+        VALUES ${values}
+      )
       SELECT
-        area_name,
-        ROUND(PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY price)) as median_rent
-      FROM listings
-      WHERE created_at >= NOW() - INTERVAL '30 days'
-        AND price > 0
-        AND area_name IS NOT NULL
-      GROUP BY area_name
+        neighborhood_areas.neighborhood_name,
+        ROUND(PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY listings.price)) as median_rent
+      FROM neighborhood_areas
+      JOIN listings ON listings.area_name = neighborhood_areas.area_name
+      WHERE listings.created_at >= NOW() - INTERVAL '30 days'
+        AND listings.price > 0
+      GROUP BY neighborhood_areas.neighborhood_name
       HAVING COUNT(*) >= 3
-    `);
+    `, params);
     const map: Record<string, number> = {};
     for (const row of result.rows) {
-      map[row.area_name] = parseInt(row.median_rent);
+      map[row.neighborhood_name] = parseInt(row.median_rent);
     }
     return map;
   } catch {
@@ -40,7 +52,7 @@ async function getMedianRents(): Promise<Record<string, number>> {
 
 export default async function NeighborhoodsIndexPage() {
   const allNames = getAllNeighborhoods();
-  const medianRents = await getMedianRents();
+  const medianRents = await getMedianRents(allNames);
 
   // Simple flat list grouped by borough
   const boroughGroups: Record<string, { name: string; slug: string; medianRent: number | null }[]> = {};
