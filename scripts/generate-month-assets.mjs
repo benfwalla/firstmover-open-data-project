@@ -2,14 +2,24 @@
 
 import fs from 'fs';
 import path from 'path';
+import pg from 'pg';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const HAS_REST_CREDENTIALS = Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
+const HAS_DATABASE_CREDENTIALS = Boolean(
+  process.env.SUPABASE_HOST &&
+  process.env.SUPABASE_USER &&
+  process.env.SUPABASE_PASSWORD
+);
 
-if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-  console.error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
+if (!HAS_REST_CREDENTIALS && !HAS_DATABASE_CREDENTIALS) {
+  console.error('Missing Supabase REST or database credentials');
   process.exit(1);
 }
+
+const { Client } = pg;
+let databaseClient;
 
 const PAGE_SIZE = 1000;
 const PRICE_MIN = 0;
@@ -91,6 +101,30 @@ const BOROUGH_MAP = parseObjectLiteralFromFile(csvScriptPath, 'BOROUGH_MAP');
 const COLUMNS = parseArrayLiteralFromFile(csvScriptPath, 'COLUMNS');
 
 async function fetchRowsForRange(startDate, endDate, select) {
+  if (!HAS_REST_CREDENTIALS) {
+    if (!/^(\*|[a-z_,]+)$/.test(select)) {
+      throw new Error(`Invalid database select list: ${select}`);
+    }
+    if (!databaseClient) {
+      databaseClient = new Client({
+        host: process.env.SUPABASE_HOST,
+        port: Number(process.env.SUPABASE_PORT || 6543),
+        database: process.env.SUPABASE_DB || 'postgres',
+        user: process.env.SUPABASE_USER,
+        password: process.env.SUPABASE_PASSWORD,
+        ssl: { rejectUnauthorized: false },
+        connectionTimeoutMillis: 15000,
+      });
+      await databaseClient.connect();
+    }
+
+    const result = await databaseClient.query(
+      `SELECT ${select} FROM listings WHERE created_at >= $1 AND created_at < $2 ORDER BY created_at ASC`,
+      [startDate, endDate]
+    );
+    return result.rows;
+  }
+
   const rows = [];
   let offset = 0;
 
@@ -394,6 +428,8 @@ async function main() {
     fs.writeFileSync(reportPath, deriveReportTemplate(args, reportData, currentMonth, previousMonth));
     console.log(`Wrote report template to ${reportPath}`);
   }
+
+  if (databaseClient) await databaseClient.end();
 
   console.log(JSON.stringify({
     slug: args.slug,
