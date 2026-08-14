@@ -20,6 +20,8 @@ function toDownloadName(file: string): string {
 }
 
 const monthlyData = [
+  { month: 'July 2026', file: '2026-07.csv', count: 25624 },
+  { month: 'June 2026', file: '2026-06.csv', count: 25678 },
   { month: 'May 2026', file: '2026-05.csv', count: 22662 },
   { month: 'April 2026', file: '2026-04.csv', count: 15101 },
   { month: 'March 2026', file: '2026-03.csv', count: 20386 },
