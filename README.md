@@ -1,5 +1,9 @@
 # FirstMover Open Data Project
 
+Operational references:
+
+- [Analytics and Search Console](docs/analytics.md)
+
 NYC rental market data, open and free.
 
 **Live site:** [firstmover-data.vercel.app](https://firstmover-data.vercel.app)

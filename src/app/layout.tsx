@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Figtree, Inter } from "next/font/google";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { FixedNavbar } from '@/components/FixedNavbar';
 import "./globals.css";
 
@@ -75,6 +76,9 @@ export default function RootLayout({
           {children}
         </main>
       </body>
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+      )}
     </html>
   );
 }

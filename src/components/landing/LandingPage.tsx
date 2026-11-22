@@ -3,6 +3,8 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Eye, Lightning, CheckCircle, AppStoreLogo, BellRinging, MagnifyingGlass, PaperPlaneTilt } from '@phosphor-icons/react';
+import { trackEvent } from '@/lib/analytics';
+import { NotificationForecaster } from '@/components/landing/NotificationForecaster';
 
 const APP_STORE_URL = 'https://apps.apple.com/app/id6740444528';
 
@@ -74,7 +76,7 @@ function LandingNav() {
         </a>
         <div className="landing-nav-links">
           <a href="/open" className="landing-nav-link">Open Data Project</a>
-          <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="landing-nav-download">
+          <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="landing-nav-download" onClick={() => trackEvent('app_store_click', { placement: 'navigation' })}>
             <AppStoreLogo size={16} weight="regular" />
             Download
           </a>
@@ -135,6 +137,7 @@ function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="landing-hero-cta"
+            onClick={() => trackEvent('app_store_click', { placement: 'hero' })}
           >
             <AppStoreLogo size={20} weight="regular" />
             Get alerts now
@@ -191,17 +194,6 @@ function HeroSection() {
         </p>
       </div>
     </section>
-  );
-}
-
-function NotificationForecaster() {
-  return (
-    <iframe
-      src="https://benfwalla.github.io/firstmover-avg-listing-embed/"
-      className="forecaster-iframe"
-      title="Notification Forecaster"
-      loading="lazy"
-    />
   );
 }
 
@@ -362,7 +354,7 @@ function LandingFooter() {
           <a href="https://open.firstmovernyc.com/privacy.html" className="landing-footer-link">Privacy Policy</a>
           <div className="landing-footer-right">
             <a href="mailto:firstmovernyc@gmail.com" className="landing-footer-link">firstmovernyc@gmail.com</a>
-            <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="landing-footer-download">
+            <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="landing-footer-download" onClick={() => trackEvent('app_store_click', { placement: 'footer' })}>
               <AppStoreLogo size={16} weight="regular" />
               Download
             </a>
