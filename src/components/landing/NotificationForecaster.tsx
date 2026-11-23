@@ -197,10 +197,7 @@ export function NotificationForecaster() {
   return (
     <div className="forecaster-card">
       <div className="forecaster-card-header">
-        <div>
-          <span className="forecaster-eyebrow">Live market data</span>
-          <h3>Notification forecaster</h3>
-        </div>
+        <h3>Notification forecaster</h3>
         <button className="forecaster-reset" type="button" onClick={reset}>
           Reset
         </button>

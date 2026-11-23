@@ -1,35 +1,28 @@
-'use client';
-
-import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Eye, Lightning, CheckCircle, AppStoreLogo, BellRinging, MagnifyingGlass, PaperPlaneTilt } from '@phosphor-icons/react';
-import { trackEvent } from '@/lib/analytics';
+import { Eye, Lightning, CheckCircle, BellRinging, MagnifyingGlass, PaperPlaneTilt } from '@phosphor-icons/react/ssr';
 import { NotificationForecaster } from '@/components/landing/NotificationForecaster';
-
-const APP_STORE_URL = 'https://apps.apple.com/app/id6740444528';
+import { TrackedAppStoreLink } from '@/components/landing/TrackedAppStoreLink';
 
 const IMG = '/images/landing';
 const IMAGES = {
-  heroBg: `${IMG}/hero-bg.png`,
+  heroBg: `${IMG}/hero-bg.avif`,
   phoneFrame: `${IMG}/phone-frame.png`,
-  phoneScreen: `${IMG}/phone-screen.svg`,
+  phoneScreen: `${IMG}/phone-screen.webp`,
   logo: '/logo.svg',
-  cardNeverMissBg: `${IMG}/card-never-miss-bg.jpg`,
+  cardNeverMissBg: `${IMG}/card-never-miss-bg.avif`,
   cardNeverMissDialog: `${IMG}/card-never-miss-dialog.svg`,
   cardEasySetup: `${IMG}/card-easy-setup.png`,
-  cardPark: `${IMG}/city-park.avif`,
 };
 
 const LEFT_NOTIF_SVGS = [
-  `${IMG}/notif-left-1.svg`,
-  `${IMG}/notif-left-2.svg`,
-  `${IMG}/notif-left-3.svg`,
+  `${IMG}/notif-left-1.webp`,
+  `${IMG}/notif-left-2.webp`,
+  `${IMG}/notif-left-3.webp`,
 ];
 
 const RIGHT_NOTIF_SVGS = [
-  `${IMG}/notif-right-1.svg`,
-  `${IMG}/notif-right-2.svg`,
-  `${IMG}/notif-right-3.svg`,
+  `${IMG}/notif-right-1.webp`,
+  `${IMG}/notif-right-2.webp`,
+  `${IMG}/notif-right-3.webp`,
 ];
 
 const REVIEWS = [
@@ -42,31 +35,6 @@ const REVIEWS = [
 
 /* ---------- Sub-components ---------- */
 
-function LiveClock() {
-  const [display, setDisplay] = useState('');
-
-  useEffect(() => {
-    function update() {
-      const now = new Date();
-      const mm = String(now.getMonth() + 1).padStart(2, '0');
-      const dd = String(now.getDate()).padStart(2, '0');
-      const yy = String(now.getFullYear()).slice(2);
-      const h = now.getHours();
-      const min = String(now.getMinutes()).padStart(2, '0');
-      const sec = String(now.getSeconds()).padStart(2, '0');
-      const ampm = h >= 12 ? 'PM' : 'AM';
-      const h12 = h % 12 || 12;
-      setDisplay(`${mm}.${dd}.${yy} \u2022 ${h12}:${min}:${sec} ${ampm}`);
-    }
-    update();
-    const id = setInterval(update, 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  if (!display) return <span style={{ visibility: 'hidden' }}>00.00.00 &bull; 0:00:00 AM</span>;
-  return <span>{display}</span>;
-}
-
 function LandingNav() {
   return (
     <nav className="landing-nav">
@@ -76,10 +44,7 @@ function LandingNav() {
         </a>
         <div className="landing-nav-links">
           <a href="/open" className="landing-nav-link">Open Data Project</a>
-          <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="landing-nav-download" onClick={() => trackEvent('app_store_click', { placement: 'navigation' })}>
-            <AppStoreLogo size={16} weight="regular" />
-            Download
-          </a>
+          <TrackedAppStoreLink className="landing-nav-download" label="Download" placement="navigation" />
         </div>
       </div>
     </nav>
@@ -87,74 +52,36 @@ function LandingNav() {
 }
 
 function HeroSection() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
-
-  // Notification cards: hidden at start, slide outward on scroll
-  const leftX1 = useTransform(scrollYProgress, [0, 0.15, 0.4], [0, -30, -70]);
-  const leftX2 = useTransform(scrollYProgress, [0, 0.15, 0.4], [0, -50, -110]);
-  const leftX3 = useTransform(scrollYProgress, [0, 0.15, 0.4], [0, -40, -90]);
-  const rightX1 = useTransform(scrollYProgress, [0, 0.15, 0.4], [0, 30, 70]);
-  const rightX2 = useTransform(scrollYProgress, [0, 0.15, 0.4], [0, 50, 110]);
-  const rightX3 = useTransform(scrollYProgress, [0, 0.15, 0.4], [0, 40, 90]);
-  const notifOpacity = useTransform(scrollYProgress, [0, 0.08, 0.2], [0, 0.5, 1]);
-
-  const leftXValues = [leftX1, leftX2, leftX3];
-  const rightXValues = [rightX1, rightX2, rightX3];
-  const leftRotations = [-4, 3, -2.5];
-  const rightRotations = [4, -3, 2.5];
-
-  // Scroll animations: clock + headline + CTA slide down into the phone
-  const heroTextY = useTransform(scrollYProgress, [0, 0.25], [0, 200]);
-  const heroTextScale = useTransform(scrollYProgress, [0, 0.25], [1, 0.7]);
-  const heroTextOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-
   return (
-    <section className="landing-hero" ref={heroRef}>
+    <section className="landing-hero">
       <div className="landing-hero-bg">
-        <img src={IMAGES.heroBg} alt="" />
+        <img src={IMAGES.heroBg} alt="" width="768" height="644" fetchPriority="high" decoding="async" />
       </div>
       <div className="landing-hero-glow" />
 
       <div className="landing-hero-content">
-        <motion.div
-          className="landing-hero-text-group"
-          style={{ y: heroTextY, scale: heroTextScale, opacity: heroTextOpacity }}
-        >
+        <div className="landing-hero-text-group">
           <div className="landing-hero-clock">
-            <LiveClock />
+            NYC rentals <span aria-hidden="true">&bull;</span> Listings move fast
           </div>
 
           <h1 className="landing-hero-headline">
             Get StreetEasy<br />Notifications<br />Before Anyone Else
           </h1>
 
-          <a
-            href={APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="landing-hero-cta"
-            onClick={() => trackEvent('app_store_click', { placement: 'hero' })}
-          >
-            <AppStoreLogo size={20} weight="regular" />
-            Get alerts now
-          </a>
-        </motion.div>
+          <TrackedAppStoreLink className="landing-hero-cta" label="Get alerts now" placement="hero" iconSize={20} />
+        </div>
 
         <div className="landing-hero-phone-area">
           {/* Left notifications */}
           <div className="hero-notifs-left">
             {LEFT_NOTIF_SVGS.map((src, i) => (
-              <motion.div
-                key={i}
-                style={{ x: leftXValues[i], opacity: notifOpacity, rotate: leftRotations[i] }}
-                className="hero-notif-svg"
-              >
-                <img src={src} alt="" />
-              </motion.div>
+              <div key={src} className={`hero-notif-svg hero-notif-${i + 1}`}>
+                <picture>
+                  <source media="(min-width: 811px)" srcSet={src} type="image/webp" />
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="" width="640" height="148" loading="lazy" decoding="async" />
+                </picture>
+              </div>
             ))}
           </div>
 
@@ -166,24 +93,29 @@ function HeroSection() {
               alt="FirstMover app showing a new listing notification"
               className="hero-phone-screen"
               fetchPriority="high"
+              decoding="async"
+              width="760"
+              height="1647"
             />
             <img
               src={IMAGES.phoneFrame}
               alt=""
               className="hero-phone-frame"
+              width="1072"
+              height="2163"
+              decoding="async"
             />
           </div>
 
           {/* Right notifications */}
           <div className="hero-notifs-right">
             {RIGHT_NOTIF_SVGS.map((src, i) => (
-              <motion.div
-                key={i}
-                style={{ x: rightXValues[i], opacity: notifOpacity, rotate: rightRotations[i] }}
-                className="hero-notif-svg"
-              >
-                <img src={src} alt="" />
-              </motion.div>
+              <div key={src} className={`hero-notif-svg hero-notif-${i + 1}`}>
+                <picture>
+                  <source media="(min-width: 811px)" srcSet={src} type="image/webp" />
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="" width="640" height="148" loading="lazy" decoding="async" />
+                </picture>
+              </div>
             ))}
           </div>
         </div>
@@ -236,8 +168,8 @@ function ValuePropSection() {
           <div className="landing-features-grid">
             <div className="landing-feature-card">
               <div className="feature-card-visual feature-card-visual-clouds">
-                <img src={IMAGES.cardNeverMissBg} alt="" className="feature-card-clouds" loading="lazy" />
-                <img src={IMAGES.cardNeverMissDialog} alt="" className="feature-card-dialog" loading="lazy" />
+                <img src={IMAGES.cardNeverMissBg} alt="" className="feature-card-clouds" width="1600" height="900" loading="lazy" decoding="async" />
+                <img src={IMAGES.cardNeverMissDialog} alt="" className="feature-card-dialog" width="308" height="203" loading="lazy" decoding="async" />
               </div>
               <div className="feature-card-content">
                 <BellRinging size={28} weight="regular" className="feature-card-icon" />
@@ -247,7 +179,7 @@ function ValuePropSection() {
             </div>
             <div className="landing-feature-card">
               <div className="feature-card-visual">
-                <img src={IMAGES.cardEasySetup} alt="" className="feature-card-phone" loading="lazy" />
+                <img src={IMAGES.cardEasySetup} alt="" className="feature-card-phone" width="507" height="1024" loading="lazy" decoding="async" />
               </div>
               <div className="feature-card-content">
                 <MagnifyingGlass size={28} weight="regular" className="feature-card-icon" />
@@ -257,17 +189,14 @@ function ValuePropSection() {
             </div>
             <div className="landing-feature-card">
               <div className="feature-card-visual feature-card-notifs">
-                <img src={LEFT_NOTIF_SVGS[0]} alt="" className="feature-notif feature-notif-1" loading="lazy" />
-                <img src={RIGHT_NOTIF_SVGS[0]} alt="" className="feature-notif feature-notif-2" loading="lazy" />
+                <img src={LEFT_NOTIF_SVGS[0]} alt="" className="feature-notif feature-notif-1" width="640" height="148" loading="lazy" decoding="async" />
+                <img src={RIGHT_NOTIF_SVGS[0]} alt="" className="feature-notif feature-notif-2" width="640" height="148" loading="lazy" decoding="async" />
               </div>
               <div className="feature-card-content">
                 <PaperPlaneTilt size={28} weight="regular" className="feature-card-icon" />
                 <h4 className="feature-card-title">Be the First to Tour</h4>
                 <p className="feature-card-desc">We&rsquo;ll send you fresh listings linking directly to StreetEasy, before anyone else sees them.</p>
               </div>
-            </div>
-            <div className="landing-feature-card landing-feature-card-park">
-              <img src={IMAGES.cardPark} alt="" className="feature-card-park-img" loading="lazy" />
             </div>
           </div>
         </div>
@@ -297,7 +226,7 @@ function OpenDataSection() {
               Monthly listing CSVs and a rent stabilized buildings database.
             </p>
             <div className="tool-card-preview-wrapper">
-              <img src="/images/open_data_listings_preview.svg" alt="Open Data preview" className="tool-card-preview" loading="lazy" />
+              <img src="/images/open_data_listings_preview.svg" alt="Open Data preview" className="tool-card-preview" width="554" height="204" loading="lazy" decoding="async" />
             </div>
           </a>
 
@@ -307,7 +236,7 @@ function OpenDataSection() {
               Monthly rent reports breaking down what's happening across NYC.
             </p>
             <div className="tool-card-preview-wrapper">
-              <img src="/images/reports_preview.png" alt="Reports preview" className="tool-card-preview" loading="lazy" />
+              <img src="/images/reports_preview.png" alt="Reports preview" className="tool-card-preview" width="1124" height="754" loading="lazy" decoding="async" />
             </div>
           </a>
 
@@ -317,7 +246,7 @@ function OpenDataSection() {
               Interactive tools and sites to explore NYC's rental market.
             </p>
             <div className="tool-card-preview-wrapper">
-              <img src="/images/resource_preview.svg" alt="Resources preview" className="tool-card-preview" loading="lazy" />
+              <img src="/images/resource_preview.svg" alt="Resources preview" className="tool-card-preview" width="719" height="261" loading="lazy" decoding="async" />
             </div>
           </a>
         </div>
@@ -354,10 +283,7 @@ function LandingFooter() {
           <a href="https://open.firstmovernyc.com/privacy.html" className="landing-footer-link">Privacy Policy</a>
           <div className="landing-footer-right">
             <a href="mailto:firstmovernyc@gmail.com" className="landing-footer-link">firstmovernyc@gmail.com</a>
-            <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="landing-footer-download" onClick={() => trackEvent('app_store_click', { placement: 'footer' })}>
-              <AppStoreLogo size={16} weight="regular" />
-              Download
-            </a>
+            <TrackedAppStoreLink className="landing-footer-download" label="Download" placement="footer" />
           </div>
         </div>
       </footer>
@@ -368,11 +294,6 @@ function LandingFooter() {
 /* ---------- Main export ---------- */
 
 export function LandingPage() {
-  useEffect(() => {
-    document.body.classList.add('landing');
-    return () => document.body.classList.remove('landing');
-  }, []);
-
   return (
     <div className="landing-page">
       <LandingNav />
